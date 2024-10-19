@@ -1,0 +1,12 @@
+ion-input {
+    max-width: 20rem;
+    background: var(--ion-color-background-darkless);;
+    border-radius: 10px;
+    --padding-start: 10px;
+}
+
+ion-card {
+    background: var(--ion-color-background-dark);
+    max-width: 30rem;
+    margin: 5rem auto;
+}
