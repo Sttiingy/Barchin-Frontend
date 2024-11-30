@@ -52,3 +52,15 @@ ion-content {
     justify-content: center;
     flex-direction: column;
 }
+
+.error-p {
+    color: var(--ion-color-danger);
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.clickable {
+    cursor: pointer;
+}

@@ -1,0 +1,11 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons class="mr-1" slot="end" (click)="authService.logout()">
+      <ion-icon class="clickable" slot="icon-only" name="power-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons class="mr-1" slot="start" (click)="menuService.toggleMenu()">
+      <ion-icon class="clickable" slot="icon-only" name="menu-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

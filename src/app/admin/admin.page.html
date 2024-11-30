@@ -1,0 +1,28 @@
+<app-header [title]="'ADMINISTRACIÓN'"></app-header>
+
+<ion-content>
+    <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
+    <div class="global-wrap">
+        <table class="mt-2">
+            <tr>
+                <th scope="col"> Usuario</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+            </tr>
+            <ng-container *ngFor="let user of allUsers">
+            <tr class="not-header">
+                <td>{{user?.displayName}}</td>
+                <td>{{user?.email}}</td>
+                <td *ngIf="user?.isAdmin">Administrador</td>
+                <td *ngIf="!user?.isAdmin">Usuario</td>
+            </tr>
+        </ng-container>
+        <tr class="not-header">
+            <td class="all-row">
+                Añadir Usuario
+            </td>
+        </tr>
+        </table>
+
+    </div>
+</ion-content>

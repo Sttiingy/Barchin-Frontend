@@ -8,20 +8,25 @@
           <ion-card-subtitle class="text-center">Administración</ion-card-subtitle>
         </ion-card-header>
       </ion-col>
-      <ion-card-header>
-
-      </ion-card-header>
       <ion-card-content>
-        <ion-col>
+        <ion-col class="p-0">
+          <ion-row *ngIf="credentialsError" class="justify-center">
+            <p class="error-p">Usuario y/o contraseña incorrectas</p>
+          </ion-row>
           <ion-row class="flex-center mb-05">
-            <ion-input class="mx-auto" placeholder="Email" clear-input="true" mode="ios"></ion-input>
+            <ion-input class="mx-auto" style="--placeholder-color: white;" [(ngModel)]="username" (ngModelChange)="resetAuthError()" placeholder="Email" mode="ios"></ion-input>
           </ion-row>
           <ion-row class="flex-center mb-1">
-            <ion-input class="mx-auto" placeholder="Contraseña" clear-input="true" mode="ios"></ion-input>
+            <ion-input class="mx-auto" type="password" style="--placeholder-color: white;" [(ngModel)]="password" (ngModelChange)="resetAuthError()" placeholder="Contraseña" mode="ios">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
           </ion-row>
           <ion-row class="flex-center">
-            <ion-button color="primary">
+            <ion-button *ngIf="!loading" color="primary" shape="round" (click)="login()" [disabled]="credentialsError">
               <p>Entrar</p>
+            </ion-button>
+            <ion-button *ngIf="loading" color="primary" shape="round" [disabled]="true">
+              <ion-spinner name="dots" color="secondary"></ion-spinner>
             </ion-button>
           </ion-row>
         </ion-col>

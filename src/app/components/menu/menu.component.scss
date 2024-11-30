@@ -1,0 +1,29 @@
+.menu-footer-toolbar {
+    --background: var(--ion-color-background-darkless);
+}
+
+.item-icon {
+    height: 2rem;
+    width: 20%;
+    margin: auto 0;
+}
+
+.item-text {
+    width: 70%;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.menu-item {
+    &:hover {
+        background: var(--ion-color-background-darkless-tint);
+    cursor: pointer;
+    }
+}
+
+.item-separator {
+    width: 100%;
+    height: 1px;
+    margin-left: 4rem;
+    background: white;
+}

@@ -1,7 +1,7 @@
 {
   "name": "barchin-frontend",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Comisión Barchin",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "copy:ios": "npx cap sync ios && npx cap copy ios && npx jetifier && npx cap open ios",
+    "copy:android": " npx cap sync android && npx cap copy android && npx jetifier && npx cap open android",
+    "build:general": "npm run build",
+    "build:android": "npm run build:general && npm run copy:android",
+    "build:ios": "npm run build:general && npm run copy:ios"
   },
   "private": true,
   "dependencies": {
@@ -21,10 +26,13 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@capacitor/android": "^6.1.2",
     "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.2.0",
     "@ionic/angular": "^8.0.0",
     "firebase": "^10.14.1",
     "ionicons": "^7.0.0",
+    "rxfire": "^6.0.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

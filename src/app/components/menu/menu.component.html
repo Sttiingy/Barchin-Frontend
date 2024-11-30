@@ -1,0 +1,32 @@
+<ion-menu content-id="main">
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-row class="menu-item" (click)="navTo('home')" >
+      <ion-icon class="item-icon" name="home-outline"></ion-icon>
+      <p class="item-text">Inicio</p>
+    </ion-row>
+    <div class="item-separator"></div>
+    <ion-row class="menu-item" (click)="navTo('puentes')">
+      <ion-icon class="item-icon" name="calendar-outline"></ion-icon>
+      <p class="item-text">Puentes</p>
+    </ion-row>
+
+
+    <div *ngIf="userService?.getUser()?.isAdmin" class="item-separator"></div>
+    <ion-row *ngIf="userService?.getUser()?.isAdmin" class="menu-item" (click)="navTo('admin')">
+      <ion-icon class="item-icon" name="build-outline"></ion-icon>
+      <p class="item-text">Administración</p>
+    </ion-row>
+  </ion-content>
+  <ion-footer mode="ios">
+    <ion-toolbar class="menu-footer-toolbar">
+      <ion-row class="flex-center">
+        <img style="max-height: 5rem;" alt="Logo" src="assets/img/barchin-badge.png"/>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>
+</ion-menu>
