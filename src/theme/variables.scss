@@ -3,12 +3,12 @@
 
 :root {
 
-    --ion-color-primary: #88f498;
-	--ion-color-primary-rgb: 136,244,152;
-	--ion-color-primary-contrast: #000000;
-	--ion-color-primary-contrast-rgb: 0,0,0;
-	--ion-color-primary-shade: #78d786;
-	--ion-color-primary-tint: #94f5a2;
+    --ion-color-primary: #408080;
+	--ion-color-primary-rgb: 64,128,128;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-contrast-rgb: 255, 255, 255;
+	--ion-color-primary-shade: #387171;
+	--ion-color-primary-tint: #538d8d;
 
     --ion-color-secondary: #73b07c;
 	--ion-color-secondary-rgb: 115,176,124;
@@ -17,19 +17,19 @@
 	--ion-color-secondary-shade: #659b6d;
 	--ion-color-secondary-tint: #81b889;
 
-    --ion-color-background-dark: #2D2D2D;
-	--ion-color-background-dark-rgb: 45,45,45;
-	--ion-color-background-dark-contrast: #ffffff;
-	--ion-color-background-dark-contrast-rgb: 255,255,255;
-	--ion-color-background-dark-shade: #282828;
-	--ion-color-background-dark-tint: #424242;
+	--ion-color-background-light: #ffffff;
+	--ion-color-background-light-rgb: 255,255,255;
+	--ion-color-background-light-contrast: #000000;
+	--ion-color-background-light-contrast-rgb: 0,0,0;
+	--ion-color-background-light-shade: #e0e0e0;
+	--ion-color-background-light-tint: #ffffff;
 
-    --ion-color-background-darkless: #3F3F3F;
-	--ion-color-background-darkless-rgb: 63,63,63;
-	--ion-color-background-darkless-contrast: #ffffff;
-	--ion-color-background-darkless-contrast-rgb: 255,255,255;
-	--ion-color-background-darkless-shade: #373737;
-	--ion-color-background-darkless-tint: #525252;
+	--ion-color-background-lightless: #f4f4f4;
+	--ion-color-background-lightless-rgb: 244,244,244;
+	--ion-color-background-lightless-contrast: #000000;
+	--ion-color-background-lightless-contrast-rgb: 0,0,0;
+	--ion-color-background-lightless-shade: #d7d7d7;
+	--ion-color-background-lightless-tint: #f5f5f5;
 
     --ion-color-success: #2dd55b;
 	--ion-color-success-rgb: 45,213,91;
@@ -51,24 +51,6 @@
 	--ion-color-danger-contrast-rgb: 0,0,0;
 	--ion-color-danger-shade: #e05166;
 	--ion-color-danger-tint: #ff6c82;
-}
-
-.ion-color-background-dark {
-	--ion-color-base: var(--ion-color-background-dark);
-	--ion-color-base-rgb: var(--ion-color-background-dark-rgb);
-	--ion-color-contrast: var(--ion-color-background-dark-contrast);
-	--ion-color-contrast-rgb: var(--ion-color-background-dark-contrast-rgb);
-	--ion-color-shade: var(--ion-color-background-dark-shade);
-	--ion-color-tint: var(--ion-color-background-dark-tint);
-}
-
-.ion-color-background-darkless {
-	--ion-color-base: var(--ion-color-background-darkless);
-	--ion-color-base-rgb: var(--ion-color-background-darkless-rgb);
-	--ion-color-contrast: var(--ion-color-background-darkless-contrast);
-	--ion-color-contrast-rgb: var(--ion-color-background-darkless-contrast-rgb);
-	--ion-color-shade: var(--ion-color-background-darkless-shade);
-	--ion-color-tint: var(--ion-color-background-darkless-tint);
 }
 
 .ion-color-secondary {
@@ -96,4 +78,31 @@
 	--ion-color-contrast-rgb: var(--ion-color-danger-contrast-rgb);
 	--ion-color-shade: var(--ion-color-danger-shade);
 	--ion-color-tint: var(--ion-color-danger-tint);
+}
+
+.ion-color-background-light {
+	--ion-color-base: var(--ion-color-background-light);
+	--ion-color-base-rgb: var(--ion-color-background-light-rgb);
+	--ion-color-contrast: var(--ion-color-background-light-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-background-light-contrast-rgb);
+	--ion-color-shade: var(--ion-color-background-light-shade);
+	--ion-color-tint: var(--ion-color-background-light-tint);
+}
+
+.ion-color-background-lightless {
+	--ion-color-base: var(--ion-color-background-lightless);
+	--ion-color-base-rgb: var(--ion-color-background-lightless-rgb);
+	--ion-color-contrast: var(--ion-color-background-lightless-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-background-lightless-contrast-rgb);
+	--ion-color-shade: var(--ion-color-background-lightless-shade);
+	--ion-color-tint: var(--ion-color-background-lightless-tint);
+}
+
+@font-face {
+  font-family: "dacasa";
+  src: url("../assets/fonts/gilroy.ttf")
+}
+
+*{
+  font-family: "dacasa";
 }

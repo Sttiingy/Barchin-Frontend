@@ -1,23 +1,26 @@
 .menu-footer-toolbar {
-    --background: var(--ion-color-background-darkless);
+    --background: var(--ion-color-background-light);
+    --border-color: #aeaeae;
 }
 
 .item-icon {
     height: 2rem;
     width: 20%;
     margin: auto 0;
+    color: var(--ion-color-primary);
 }
 
 .item-text {
     width: 70%;
     font-size: 1.1rem;
     font-weight: bold;
+    color: var(--ion-color-primary);
 }
 
 .menu-item {
     &:hover {
-        background: var(--ion-color-background-darkless-tint);
-    cursor: pointer;
+        background: var(--ion-color-background-lightless);
+        cursor: pointer;
     }
 }
 
@@ -25,5 +28,9 @@
     width: 100%;
     height: 1px;
     margin-left: 4rem;
-    background: white;
+    background: var(--ion-color-primary-tint);
+}
+
+ion-content {
+    --ion-background-color: var(--ion-color-background-light);
 }

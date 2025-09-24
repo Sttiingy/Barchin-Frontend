@@ -1,12 +1,22 @@
 ion-input {
     max-width: 20rem;
-    background: var(--ion-color-background-darkless);;
+    background: var(--ion-color-background-lightless);
     border-radius: 10px;
     --padding-start: 10px;
 }
 
+ion-content {
+    --ion-background-color: none
+}
+
 ion-card {
-    background: var(--ion-color-background-dark);
+    background: var(--ion-color-background-light);
     max-width: 30rem;
     margin: 5rem auto;
+}
+
+ion-content {
+  --background: 
+    linear-gradient(rgba(255, 255, 255, 0.473), rgba(255, 255, 255, 0.452)),
+    url('../../assets/img/background.jpg') center/cover no-repeat;
 }

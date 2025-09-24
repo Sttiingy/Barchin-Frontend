@@ -1,26 +1,37 @@
 <ion-menu content-id="main">
   <ion-header mode="ios">
-    <ion-toolbar>
-      <ion-title>Menú</ion-title>
+    <ion-toolbar style="--background: var(--ion-color-background-light); --border-color: #aeaeae;">
+      <ion-title style="color: var(--ion-color-primary);">MENU</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-row class="menu-item" (click)="navTo('home')" >
+    <!-- COMPONENTE HOME -->
+    <ion-row *ngIf="showHomeElement()" class="menu-item" (click)="navTo('home')">
       <ion-icon class="item-icon" name="home-outline"></ion-icon>
-      <p class="item-text">Inicio</p>
+      <p class="item-text">INICIO</p>
     </ion-row>
+
+    <!-- COMPONENTE LISTADO COFRADES -->
+    <div *ngIf="showHomeElement()" class="item-separator"></div>
+    <ion-row class="menu-item" (click)="navTo('new-cofrade')">
+      <ion-icon class="item-icon" name="person-add-outline"></ion-icon>
+      <p class="item-text">ALTA COFRADE</p>
+    </ion-row>
+
+    <!-- COMPONENTE LISTADO COFRADES -->
     <div class="item-separator"></div>
-    <ion-row class="menu-item" (click)="navTo('puentes')">
-      <ion-icon class="item-icon" name="calendar-outline"></ion-icon>
-      <p class="item-text">Puentes</p>
+    <ion-row class="menu-item" (click)="navTo('cofrades')">
+      <ion-icon class="item-icon" name="people-outline"></ion-icon>
+      <p class="item-text">COFRADES</p>
     </ion-row>
 
-
+    <!-- COMPONENTE JUNTA -->
     <div *ngIf="userService?.getUser()?.isAdmin" class="item-separator"></div>
     <ion-row *ngIf="userService?.getUser()?.isAdmin" class="menu-item" (click)="navTo('admin')">
-      <ion-icon class="item-icon" name="build-outline"></ion-icon>
-      <p class="item-text">Administración</p>
+      <ion-icon class="item-icon" name="library-outline"></ion-icon>
+      <p class="item-text">JUNTA</p>
     </ion-row>
+
   </ion-content>
   <ion-footer mode="ios">
     <ion-toolbar class="menu-footer-toolbar">

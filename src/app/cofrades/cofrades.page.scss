@@ -1,0 +1,10 @@
+.cofrade-container {
+    height: 6rem;
+    background: var(--ion-color-background-dark);;
+    border-radius: 10px;
+    padding: 1rem;
+    &:hover {
+        cursor: pointer;
+        background: #405944;
+    }
+}

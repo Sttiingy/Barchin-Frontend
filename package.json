@@ -1,7 +1,7 @@
 {
   "name": "barchin-frontend",
   "version": "0.0.1",
-  "author": "Comisión Barchin",
+  "author": "Marc Cerrillo Molinero",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",

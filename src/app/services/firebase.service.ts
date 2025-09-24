@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Auth, getAuth, indexedDBLocalPersistence, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Capacitor } from '@capacitor/core';
-import { collection, Firestore, getDocs, getFirestore, query } from 'firebase/firestore';
+import { addDoc, collection, doc, Firestore, getDoc, getDocs, getFirestore, query } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 import { environment } from 'src/environments/environment';
 
@@ -44,7 +44,21 @@ export class FirebaseService {
   async getAllUsers() {
     return await getDocs(query(collection(this.firestore, 'users')));
   }
+  async getAllCofrades() {
+    return await getDocs(query(collection(this.firestore, 'cofrades')));
+  }
 
+  async createCofrade(newCofrade) {
+    return await addDoc(collection(this.firestore, 'cofrades'), newCofrade)
+  }
 
-
+  async getCofradeById(id: string) {
+    const docRef = doc(this.firestore, 'cofrades', id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      return null;
+    }
+  } 
 }

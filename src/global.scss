@@ -39,7 +39,7 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 ion-content {
-    --ion-background-color: var(--ion-color-background-darkless);
+    --ion-background-color: var(--ion-color-background-lightless);
 }
 
 .flex-center {
@@ -63,4 +63,13 @@ ion-content {
 
 .clickable {
     cursor: pointer;
+}
+
+.content-wrapper {
+    max-width: 80%;
+    margin: auto;
+}
+
+.gap-1 {
+    gap: 1rem;
 }

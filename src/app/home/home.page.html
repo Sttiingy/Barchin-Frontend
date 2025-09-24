@@ -1,4 +1,47 @@
 <app-header [title]="'INICIO'"></app-header>
 
 <ion-content>
+    <div class="content-wrapper">
+        <ion-row style="margin-top: 4rem; justify-content: center; gap: 7rem;">
+            
+            <!-- AFEGIR COFRADE -->
+            <div class="home-card clickable" (click)="navTo('new-cofrade')">
+                <ion-col style="gap: .5rem; display: grid;">
+                    <ion-row class="gap-1">
+                        <ion-icon class="home-card-icon" name="person-add-outline"></ion-icon>
+                        <p class="home-card-title">ALTA COFRADE</p>
+                    </ion-row>
+                    <ion-row>
+                        <p style="color: black; margin: 0;">Dar de alta a los cofrades que se hayan apuntado durante el año</p>
+                    </ion-row>
+                </ion-col>
+            </div>
+            
+            <!-- LLISTAT COFRADES -->
+            <div class="home-card clickable" (click)="navTo('cofrades')">
+                <ion-col style="gap: .5rem; display: grid;">
+                    <ion-row class="gap-1">
+                        <ion-icon class="home-card-icon" name="people-outline"></ion-icon>
+                        <p class="home-card-title">COFRADES</p>
+                    </ion-row>
+                    <ion-row>
+                        <p style="color: black; margin: 0;">Consultar el listado de miembros de la cofradia</p>
+                    </ion-row>
+                </ion-col>
+            </div>
+
+            <!-- ADMIN -->
+            <div class="home-card clickable" (click)="navTo('admin')">
+                <ion-col style="gap: .5rem; display: grid;">
+                    <ion-row class="gap-1">
+                        <ion-icon class="home-card-icon" name="library-outline"></ion-icon>
+                        <p class="home-card-title">JUNTA</p>
+                    </ion-row>
+                    <ion-row>
+                        <p style="color: black; margin: 0;">Acceder al panel de administración de miembros de la junta</p>
+                    </ion-row>
+                </ion-col>
+            </div>
+        </ion-row>
+    </div>
 </ion-content>

@@ -1,0 +1,24 @@
+.home-card {
+    background: var(--ion-color-background-light);
+    border-radius: 10px;
+    max-width: 21rem;
+    padding: .5rem 1rem;
+    box-shadow: 3px 3px 3px 3px lightgray;
+    &:hover {
+       background: var(--ion-color-background-lightless-shade);
+    }
+}
+
+.home-card-title {
+    color: black;
+    font-size: 2rem;
+    margin: auto 0 auto 0;
+    font-weight: bold;
+}
+
+.home-card-icon {
+    color: var(--ion-color-primary);
+    width: 2rem;
+    height: 2rem;
+    margin: auto 0 auto 0;
+}

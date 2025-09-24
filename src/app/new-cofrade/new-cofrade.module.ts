@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PuentesPageRoutingModule } from './puentes-routing.module';
+import { NewCofradePageRoutingModule } from './new-cofrade-routing.module';
 
-import { PuentesPage } from './puentes.page';
+import { NewCofradePage } from './new-cofrade.page';
 import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from '../components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    PuentesPageRoutingModule,
+    NewCofradePageRoutingModule,
     ComponentsModule
   ],
-  declarations: [PuentesPage]
+  declarations: [NewCofradePage]
 })
-export class PuentesPageModule {}
+export class NewCofradePageModule {}

@@ -1,31 +1,37 @@
 tr {
   &.not-header {
-    &:hover {
-      background: var(--ion-color-background-darkless-tint);
-      cursor: pointer;
+    &.clickable {
+      &:hover {
+        background: var(--ion-color-primary-tint);
+        cursor: pointer;
+      }
     }
   }
+}
+
+.row-background {
+  background: #c1d5d575;
 }
 
 .all-row {
   color: white;
   text-align: center;
   padding: .5rem 0;
-  border: 1px solid white;
+  border: 1px solid var(--ion-color-primary);;
 }
 
 td {
-  color: white;
+  color: black;
   text-align: center;
   padding: .5rem 0;
-  border: 1px solid white;
+  border: 1px solid var(--ion-color-primary);
 }
 
 th {
   padding: .5rem 0;
   font-weight: bold;
   color: var(--ion-color-primary);
-  border: 1px solid white;
+  border: 1px solid var(--ion-color-primary);;
   border-top: 4px solid var(--ion-color-primary);
 }
 

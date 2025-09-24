@@ -1,0 +1,115 @@
+<app-header [title]="'ALTA COFRADE'"></app-header>
+<ion-content>
+    <div class="content-wrapper">
+      <div class="card-container">
+        <ion-col>
+
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30%;">
+              <p>NOMBRE *</p>
+              <ion-input class="mx-auto" [(ngModel)]="newCofrade.name" mode="ios"></ion-input>
+            </ion-col>
+            <ion-col style="max-width: 30%;">
+              <p>APELLIDOS *</p>
+              <ion-input class="mx-auto" [(ngModel)]="newCofrade.surname" mode="ios"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30%;">
+              <p>NÚMERO DE COFRADE ( {{numToBeAssigned}} )</p>
+              <ion-input type="number" [(ngModel)]="newCofrade.number" class="mx-auto" mode="ios"></ion-input>
+            </ion-col>
+            <ion-col style="max-width: 30%;">
+              <p>SEXO *</p>
+              <select [(ngModel)]="newCofrade.sex">
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="M">Hombre</option>
+                <option value="W">Mujer</option>
+              </select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="newCofrade?.sex === 'W'" style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30%;">
+              <p>CUMPLIÓ COMO DAMA EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.damaYear"></ion-input>
+            </ion-col>
+            <ion-col style="max-width: 30%;">
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30%;">
+              <p>FECHA DE NACIMIENTO *</p>
+              <input type="date" [(ngModel)]="newCofrade.birthdate" />
+            </ion-col>
+            <ion-col style="max-width: 30%;">
+              <p>TELÉFONO</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.phoneNumber" mode="ios"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30%;">
+              <p>CARGO AL CUMPLIR</p>
+              <select [(ngModel)]="newCofrade.cumpRole">
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="CAP">Capitán</option>
+                <option value="ALF">Alferez</option>
+                <option value="SAR">Sargento</option>
+                <option value="AYU">Ayudante</option>
+                <option value="BAN">Abanderado</option>
+              </select>
+            </ion-col>
+            <ion-col style="max-width: 30%;">
+              <p>CUMPLIÓ EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.cumpYear" mode="ios"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30%;">
+              <p>MAYORDOMO EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.mayorYear" mode="ios"></ion-input>
+            </ion-col>
+            <ion-col style="max-width: 30%;">
+              <p>FAROL EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.farolYear" mode="ios"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30%;">
+              <p>BAJA EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.bajaYear" mode="ios"></ion-input>
+            </ion-col>
+            <ion-col style="max-width: 30%;">
+              <p>MOTIVO DE LA BAJA</p>
+              <select [(ngModel)]="newCofrade.bajaReason">
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="VOL">Baja voluntaria</option>
+                <option value="IMP">Impago</option>
+                <option value="EXI">Defunción</option>
+              </select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 30rem;">
+              <p>REFERENCIA FAMILIAR</p>
+              <textarea [(ngModel)]="newCofrade.info" >
+
+              </textarea>
+            </ion-col>
+          </ion-row>
+
+        </ion-col>
+        <ion-row style="justify-content: center;">
+          <ion-button color="primary" shape="round" (click)="createCofrade()" [disabled]="buttonIsDisabled()">
+            DAR DE ALTA
+          </ion-button>
+        </ion-row>
+      </div>
+    </div>
+</ion-content>

@@ -1,11 +1,11 @@
 <ion-header mode="ios">
-  <ion-toolbar>
-    <ion-title>{{title}}</ion-title>
+  <ion-toolbar style="--background: var(--ion-color-background-light); --border-color: #aeaeae;">
+    <ion-title style="color: var(--ion-color-primary);">{{title}}</ion-title>
     <ion-buttons class="mr-1" slot="end" (click)="authService.logout()">
-      <ion-icon class="clickable" slot="icon-only" name="power-outline"></ion-icon>
+      <ion-icon style="color: var(--ion-color-primary);" class="clickable" slot="icon-only" name="power-outline"></ion-icon>
     </ion-buttons>
     <ion-buttons class="mr-1" slot="start" (click)="menuService.toggleMenu()">
-      <ion-icon class="clickable" slot="icon-only" name="menu-outline"></ion-icon>
+      <ion-icon style="color: var(--ion-color-primary);" class="clickable" slot="icon-only" name="menu-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

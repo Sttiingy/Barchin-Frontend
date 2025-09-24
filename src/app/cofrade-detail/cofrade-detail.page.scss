@@ -1,0 +1,54 @@
+.card-container {
+    width: 100%;
+    background: var(--ion-color-background-light);
+    margin-top: 4rem;
+    padding-bottom: 4rem;
+    border-radius: 10px;
+    border-top: var(--ion-color-primary) 9px solid;
+    box-shadow: 3px 3px 3px 3px lightgray;
+}
+
+p {
+    color: var(--ion-color-primary);
+    padding-left: .3rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+ion-input {
+    background: #cfcfcf;
+    border-radius: 10px;
+    --padding-start: 10px;
+    margin-left: 0;
+    --highlight-color: var(--ion-color-primary) !important;
+    color: black;
+}
+
+select {
+    width: 100%;
+    color: black;
+    background: #cfcfcf;
+    border-radius: 10px;
+    border: none;
+    height: 44px;
+    padding-left: 10px;
+}
+
+input {
+    width: 100%;
+    color: black;
+    background: #cfcfcf;
+    border-radius: 10px;
+    border: none;
+    height: 44px;
+    padding: 10px;
+}
+
+textarea {
+    border-radius: 10px;
+    background: white;
+    color: black;
+    padding: 1rem;
+    width: 100%;
+    resize: none;
+}

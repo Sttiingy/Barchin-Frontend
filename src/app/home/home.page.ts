@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,15 @@ import { AuthService } from '../services/auth.service';
 export class HomePage implements OnInit {
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    public navCtrl: NavController
   ) { }
 
   ngOnInit() {
+  }
+
+  navTo(route: string) {
+    this.navCtrl.navigateRoot(route);
   }
 
 }
