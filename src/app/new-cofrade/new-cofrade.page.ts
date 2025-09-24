@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-new-cofrade',
@@ -9,7 +10,8 @@ import { FirebaseService } from '../services/firebase.service';
 export class NewCofradePage implements OnInit {
 
   constructor(
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+    public navCtrl: NavController
   ) { }
   
   public newCofrade = {
@@ -64,6 +66,7 @@ export class NewCofradePage implements OnInit {
       this.newCofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
       if(this.newCofrade?.number?.length === 0 || this.newCofrade?.number === null) this.newCofrade.number = this.numToBeAssigned;
       let res = await this.firebaseService.createCofrade(this.newCofrade);
+      this.navCtrl.navigateRoot('cofrade-detail/' + res?.id);
       //TODO: Navegar al detall del cofrade creat 
       console.log(res?.id);
       this.loading = false;

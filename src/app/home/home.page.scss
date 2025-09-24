@@ -11,7 +11,12 @@
 
 .home-card-title {
     color: black;
-    font-size: 2rem;
+    @media (max-width: 768px) {
+        font-size: 1.7rem;
+    }
+    @media (min-width: 768px) {
+        font-size: 2rem;
+    }
     margin: auto 0 auto 0;
     font-weight: bold;
 }
@@ -21,4 +26,13 @@
     width: 2rem;
     height: 2rem;
     margin: auto 0 auto 0;
+}
+
+.responsive-separation {
+    @media (min-width: 768px) {
+        gap: 4rem;;
+    }
+    @media (max-width: 768px) {
+        gap: 2rem;
+    }
 }

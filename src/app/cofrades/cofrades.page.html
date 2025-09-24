@@ -8,21 +8,16 @@
                 <th scope="col">NOMBRE</th>
                 <th scope="col">APELLIDOS</th>
                 <th scope="col">NÚMERO DE COFRADE</th>
-                <th scope="col">FECHA DE NACIMIENTO</th>
+                <th class="nonDisplayPhone" scope="col">FECHA DE NACIMIENTO</th>
             </tr>
             <ng-container *ngFor="let cofrade of allCofrades; let i = index">
-                <tr class="not-header" [class.row-background]="i % 2 === 0" (click)="navToCofradeDetail(cofrade.id)">
-                    <td>{{cofrade?.name}}</td>
-                    <td>{{cofrade?.surname}}</td>
+                <tr class="not-header clickable" [class.row-background]="i % 2 === 0" (click)="navToCofradeDetail(cofrade.id)">
+                    <td class="hide-mobile" >{{cofrade?.name}}</td>
+                    <td class="hide-mobile" >{{cofrade?.surname}}</td>
                     <td>{{cofrade?.number}}</td>
-                    <td>{{cofrade?.birthdate?.toDate() | date:'dd/MM/yyyy' }}</td>
+                    <td class="nonDisplayPhone">{{cofrade?.birthdate?.toDate() | date:'dd/MM/yyyy' }}</td>
                 </tr>
             </ng-container>
-            <!-- <tr class="not-header clickable">
-                <td class="all-row">
-                    Añadir Usuario
-                </td>
-            </tr> -->
         </table>
     </div>
 </ion-content>

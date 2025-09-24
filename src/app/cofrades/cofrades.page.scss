@@ -8,3 +8,13 @@
         background: #405944;
     }
 }
+
+.hide-mobile {
+    @media (max-width: 768px) {
+        white-space: nowrap;
+        padding: 0.5rem;
+        max-width: 8rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}

@@ -29,12 +29,19 @@ const routes: Routes = [
   },
   {
     path: 'new-cofrade',
-    loadChildren: () => import('./new-cofrade/new-cofrade.module').then( m => m.NewCofradePageModule)
+    loadChildren: () => import('./new-cofrade/new-cofrade.module').then( m => m.NewCofradePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'cofrade-detail/:id',
-    loadChildren: () => import('./cofrade-detail/cofrade-detail.module').then( m => m.CofradeDetailPageModule)
-  }
+    loadChildren: () => import('./cofrade-detail/cofrade-detail.module').then( m => m.CofradeDetailPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

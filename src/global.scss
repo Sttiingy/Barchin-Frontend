@@ -66,10 +66,22 @@ ion-content {
 }
 
 .content-wrapper {
-    max-width: 80%;
+    max-width: 90%;
     margin: auto;
 }
 
 .gap-1 {
     gap: 1rem;
+}
+
+.nonDisplayPhone {
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.displayOnlyPhone {
+    @media (min-width: 768px) {
+        display: none;
+    }
 }

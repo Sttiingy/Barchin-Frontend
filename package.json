@@ -14,7 +14,8 @@
     "copy:android": " npx cap sync android && npx cap copy android && npx jetifier && npx cap open android",
     "build:general": "npm run build",
     "build:android": "npm run build:general && npm run copy:android",
-    "build:ios": "npm run build:general && npm run copy:ios"
+    "build:ios": "npm run build:general && npm run copy:ios",
+    "build:deploy": "ionic build --prod -- --base-href /Barchin-Frontend/ && npx angular-cli-ghpages --dir=www"
   },
   "private": true,
   "dependencies": {
