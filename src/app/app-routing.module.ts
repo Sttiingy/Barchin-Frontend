@@ -38,6 +38,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'edit-cofrade/:id',
+    loadChildren: () => import('./edit-cofrade/edit-cofrade.module').then( m => m.EditCofradePageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'

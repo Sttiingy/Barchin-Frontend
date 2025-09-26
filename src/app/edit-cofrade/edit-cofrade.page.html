@@ -1,27 +1,28 @@
-<app-header [title]="'ALTA COFRADE'"></app-header>
+<app-header [title]="'EDITAR COFRADE'"></app-header>
 <ion-content>
-    <div class="content-wrapper">
+  <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
+    <div *ngIf="!loading" class="content-wrapper">
       <div class="card-container">
         <ion-col class="nonDisplayPhone">
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
               <p>NOMBRE *</p>
-              <ion-input class="mx-auto" [(ngModel)]="newCofrade.name" mode="ios"></ion-input>
+              <ion-input class="mx-auto" [(ngModel)]="cofrade.name" mode="ios"></ion-input>
             </ion-col>
             <ion-col style="max-width: 35%;">
               <p>APELLIDOS *</p>
-              <ion-input class="mx-auto" [(ngModel)]="newCofrade.surname" mode="ios"></ion-input>
+              <ion-input class="mx-auto" [(ngModel)]="cofrade.surname" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
-              <p>NÚMERO DE COFRADE ( {{numToBeAssigned}} )</p>
-              <ion-input type="number" [(ngModel)]="newCofrade.number" class="mx-auto" mode="ios"></ion-input>
+              <p>NÚMERO DE COFRADE</p>
+              <ion-input type="number" [(ngModel)]="cofrade.number" class="mx-auto" mode="ios"></ion-input>
             </ion-col>
             <ion-col style="max-width: 35%;">
               <p>SEXO *</p>
-              <select [(ngModel)]="newCofrade.sex">
+              <select [(ngModel)]="cofrade.sex">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="M">Hombre</option>
                 <option value="W">Mujer</option>
@@ -29,10 +30,10 @@
             </ion-col>
           </ion-row>
 
-          <ion-row *ngIf="newCofrade?.sex === 'W'" style="justify-content: center; gap: 10rem;">
+          <ion-row *ngIf="cofrade?.sex === 'W'" style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
               <p>CUMPLIÓ COMO DAMA EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.damaYear"></ion-input>
+              <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="cofrade.damaYear"></ion-input>
             </ion-col>
             <ion-col style="max-width: 35%;">
             </ion-col>
@@ -41,18 +42,18 @@
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
               <p>FECHA DE NACIMIENTO *</p>
-              <input type="date" [(ngModel)]="newCofrade.birthdate" />
+              <input type="date" [(ngModel)]="formattedBirthdate" />
             </ion-col>
             <ion-col style="max-width: 35%;">
               <p>TELÉFONO</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.phoneNumber" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.phoneNumber" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
               <p>CARGO AL CUMPLIR</p>
-              <select [(ngModel)]="newCofrade.cumpRole">
+              <select [(ngModel)]="cofrade.cumpRole">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="CAP">Capitán</option>
                 <option value="ALF">Alferez</option>
@@ -63,29 +64,29 @@
             </ion-col>
             <ion-col style="max-width: 35%;">
               <p>CUMPLIÓ EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.cumpYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.cumpYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
               <p>MAYORDOMO EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.mayorYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.mayorYear" mode="ios"></ion-input>
             </ion-col>
             <ion-col style="max-width: 35%;">
               <p>FAROL EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.farolYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.farolYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
               <p>BAJA EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.bajaYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.bajaYear" mode="ios"></ion-input>
             </ion-col>
             <ion-col style="max-width: 35%;">
               <p>MOTIVO DE LA BAJA</p>
-              <select [(ngModel)]="newCofrade.bajaReason">
+              <select [(ngModel)]="cofrade.bajaReason">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="VOL">Baja voluntaria</option>
                 <option value="IMP">Impago</option>
@@ -97,7 +98,7 @@
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 30rem;">
               <p>REFERENCIA FAMILIAR</p>
-              <textarea [(ngModel)]="newCofrade.info" >
+              <textarea [(ngModel)]="cofrade.info" >
 
               </textarea>
             </ion-col>
@@ -108,54 +109,54 @@
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>NOMBRE *</p>
-              <ion-input class="mx-auto" [(ngModel)]="newCofrade.name" mode="ios"></ion-input>
+              <ion-input class="mx-auto" [(ngModel)]="cofrade.name" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>APELLIDOS *</p>
-              <ion-input class="mx-auto" [(ngModel)]="newCofrade.surname" mode="ios"></ion-input>
+              <ion-input class="mx-auto" [(ngModel)]="cofrade.surname" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
-              <p>NÚMERO DE COFRADE ( {{numToBeAssigned}} )</p>
-              <ion-input type="number" [(ngModel)]="newCofrade.number" class="mx-auto" mode="ios"></ion-input>
+              <p>NÚMERO DE COFRADE</p>
+              <ion-input type="number" [(ngModel)]="cofrade.number" class="mx-auto" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>SEXO *</p>
-              <select [(ngModel)]="newCofrade.sex">
+              <select [(ngModel)]="cofrade.sex">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="M">Hombre</option>
                 <option value="W">Mujer</option>
               </select>
             </ion-col>
           </ion-row>
-          <ion-row *ngIf="newCofrade?.sex === 'W'" style="justify-content: center;">
+          <ion-row *ngIf="cofrade?.sex === 'W'" style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>CUMPLIÓ COMO DAMA EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.damaYear"></ion-input>
+              <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="cofrade.damaYear"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>FECHA DE NACIMIENTO *</p>
-              <input type="date" [(ngModel)]="newCofrade.birthdate" />
+              <input type="date" [(ngModel)]="formattedBirthdate" />
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>TELÉFONO</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.phoneNumber" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.phoneNumber" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>CARGO AL CUMPLIR</p>
-              <select [(ngModel)]="newCofrade.cumpRole">
+              <select [(ngModel)]="cofrade.cumpRole">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="CAP">Capitán</option>
                 <option value="ALF">Alferez</option>
@@ -169,34 +170,34 @@
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>CUMPLIÓ EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.cumpYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.cumpYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>MAYORDOMO EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.mayorYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.mayorYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>FAROL EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.farolYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.farolYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>BAJA EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.bajaYear" mode="ios"></ion-input>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.bajaYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>MOTIVO DE LA BAJA</p>
-              <select [(ngModel)]="newCofrade.bajaReason">
+              <select [(ngModel)]="cofrade.bajaReason">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="VOL">Baja voluntaria</option>
                 <option value="IMP">Impago</option>
@@ -207,19 +208,19 @@
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 90%;">
               <p>REFERENCIA FAMILIAR</p>
-              <textarea [(ngModel)]="newCofrade.info"></textarea>
+              <textarea [(ngModel)]="cofrade.info"></textarea>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center; margin-top: 2rem; padding-left: 1rem; padding-right: 1rem;" class="displayOnlyPhone">
-          <ion-button style="width: 100%; font-weight: bold;" color="primary" shape="round" (click)="createCofrade()" [disabled]="buttonIsDisabled()">
-            DAR DE ALTA
+          <ion-button style="width: 100%; font-weight: bold;" color="primary" shape="round" (click)="saveCofrade()" [disabled]="buttonIsDisabled()">
+            GUARDAR CAMBIOS
           </ion-button>
         </ion-row>
         </ion-col>
 
         <ion-row style="justify-content: center;" class="nonDisplayPhone">
-          <ion-button color="primary" shape="round" (click)="createCofrade()" [disabled]="buttonIsDisabled()">
-            DAR DE ALTA
+          <ion-button color="primary" shape="round" (click)="saveCofrade()" [disabled]="buttonIsDisabled()">
+            GUARDAR CAMBIOS
           </ion-button>
         </ion-row>
       </div>
