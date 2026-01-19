@@ -26,6 +26,7 @@ export class CofradeDetailPage implements OnInit {
       this.loading = true;
       this.id = await this.route.snapshot.paramMap.get('id')!;
       this.cofrade = await this.firebase.getCofradeById(this.id);
+      console.log(this.cofrade);
       if(!this.cofradeIsDead()) {
         this.age = this.calculateAge(this.cofrade.birthdate.toDate());
       }

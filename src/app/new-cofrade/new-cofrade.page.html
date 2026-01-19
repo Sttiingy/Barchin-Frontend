@@ -29,12 +29,14 @@
             </ion-col>
           </ion-row>
 
-          <ion-row *ngIf="newCofrade?.sex === 'W'" style="justify-content: center; gap: 10rem;">
+          <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
-              <p>CUMPLIÓ COMO DAMA EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.damaYear"></ion-input>
+              <p>ALTA EN (AÑO)</p>
+                <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.altaYear"></ion-input>
             </ion-col>
             <ion-col style="max-width: 35%;">
+                <p *ngIf="newCofrade?.sex === 'W'">CUMPLIÓ COMO DAMA EN (AÑO/S)</p>
+                <ion-input *ngIf="newCofrade?.sex === 'W'" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.damaYear"></ion-input>
             </ion-col>
           </ion-row>
 
@@ -43,7 +45,7 @@
               <p>FECHA DE NACIMIENTO *</p>
               <input type="date" [(ngModel)]="newCofrade.birthdate" />
             </ion-col>
-            <ion-col style="max-width: 35%;">
+            <ion-col style="max-width: 35%;">  
               <p>TELÉFONO</p>
               <ion-input type="number" class="mx-auto" [(ngModel)]="newCofrade.phoneNumber" mode="ios"></ion-input>
             </ion-col>
@@ -125,6 +127,12 @@
           </ion-row>
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
+              <p>ALTA EN (AÑO)</p>
+                <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.altaYear"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row style="justify-content: center;">
+            <ion-col style="max-width: 90%;">
               <p>SEXO *</p>
               <select [(ngModel)]="newCofrade.sex">
                 <option value="" disabled selected>Selecciona una opción</option>
@@ -136,7 +144,7 @@
           <ion-row *ngIf="newCofrade?.sex === 'W'" style="justify-content: center;">
             <ion-col style="max-width: 90%;">
               <p>CUMPLIÓ COMO DAMA EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="newCofrade.damaYear"></ion-input>
+              <ion-input class="mx-auto" mode="ios" [(ngModel)]="newCofrade.damaYear"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center;">

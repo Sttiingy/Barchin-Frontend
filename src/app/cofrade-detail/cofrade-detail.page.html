@@ -22,14 +22,19 @@
             </ion-row>
             <ion-row style="gap: 1rem;" *ngIf="cofrade.sex === 'W'">
               <p>DAMA EN :</p>
-              <p *ngIf="cofrade.damaYear != null" class="normal-p">{{cofrade.damaYear}}</p>
+              <ion-row *ngIf="cofrade.damaYear != null || cofrade?.damaYear?.length > 0">
+                <ng-container *ngFor="let year of cofrade.damaYear; let i = index">
+                  <p *ngIf="cofrade.damaYear != null && i === 0" class="normal-p" style="padding-left: 0;">{{year}}</p>
+                  <p *ngIf="cofrade.damaYear != null && i != 0" class="normal-p" style="padding-left: 0;">, {{year}}</p>
+                </ng-container>
+              </ion-row>
               <p *ngIf="cofrade.damaYear === null || cofrade?.damaYear?.length === 0" class="normal-p">No ha sido dama</p>
             </ion-row>
             <ion-row *ngIf="!cofradeIsDead()" style="gap: 1rem;">
               <p>EDAD :</p>
               <p class="normal-p">{{age}}</p>
             </ion-row>
-            <ion-row *ngIf="cofradeIsDead()" style="gap: 1rem;">
+            <ion-row style="gap: 1rem;">
               <p>FECHA DE NACIMIENTO :</p>
               <p class="normal-p">{{cofrade?.birthdate?.toDate() | date:'dd/MM/yyyy'}}</p>
             </ion-row>
@@ -50,11 +55,6 @@
             <ion-row *ngIf="cofrade.cumpYear != null" style="gap: 1rem;">
               <p>CUMPLIÓ EN :</p>
               <p class="normal-p">{{cofrade.cumpYear}}</p>
-            </ion-row>
-            <ion-row style="gap: 1rem;">
-              <p>REFERENCIA FAMILIAR :</p>
-              <p *ngIf="cofrade?.info != null && cofrade?.info?.length > 0" class="normal-p">{{cofrade.info}}</p>
-              <p *ngIf="cofrade?.info === null || cofrade?.info?.length === 0" class="normal-p">s/d</p>
             </ion-row>
             
           </ion-col>
@@ -88,6 +88,11 @@
               <p *ngIf="cofrade.bajaReason === 'IMP'" class="normal-p">Impago</p>
               <p *ngIf="cofrade.bajaReason === 'EXI'" class="normal-p">Defunción</p>
             </ion-row>
+            <ion-row style="gap: 1rem;">
+              <p>REFERENCIA FAMILIAR :</p>
+              <p *ngIf="cofrade?.info != null && cofrade?.info?.length > 0" class="normal-p">{{cofrade.info}}</p>
+              <p *ngIf="cofrade?.info === null || cofrade?.info?.length === 0" class="normal-p">s/d</p>
+            </ion-row>
           </ion-col>
         </ion-row>
         <div class="displayOnlyPhone" >
@@ -116,14 +121,19 @@
               </ion-row>
               <ion-row style="gap: 1rem;" *ngIf="cofrade.sex === 'W'">
                 <p>DAMA EN :</p>
-                <p *ngIf="cofrade.damaYear != null" class="normal-p">{{cofrade.damaYear}}</p>
+                <ion-row *ngIf="cofrade.damaYear != null || cofrade?.damaYear?.length > 0">
+                  <ng-container *ngFor="let year of cofrade.damaYear; let i = index">
+                    <p *ngIf="cofrade.damaYear != null && i === 0" class="normal-p" style="padding-left: 0;">{{year}}</p>
+                    <p *ngIf="cofrade.damaYear != null && i != 0" class="normal-p" style="padding-left: 0;">, {{year}}</p>
+                  </ng-container>
+                </ion-row>
                 <p *ngIf="cofrade.damaYear === null || cofrade?.damaYear?.length === 0" class="normal-p">No ha sido dama</p>
               </ion-row>
               <ion-row *ngIf="!cofradeIsDead()" style="gap: 1rem;">
                 <p>EDAD :</p>
                 <p class="normal-p">{{age}}</p>
               </ion-row>
-              <ion-row *ngIf="cofradeIsDead()" style="gap: 1rem;">
+              <ion-row style="gap: 1rem;">
                 <p>FECHA DE NACIMIENTO :</p>
                 <p class="normal-p">{{cofrade?.birthdate?.toDate() | date:'dd/MM/yyyy'}}</p>
               </ion-row>

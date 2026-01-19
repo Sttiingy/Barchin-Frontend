@@ -27,6 +27,7 @@ export class EditCofradePage implements OnInit {
       this.id = await this.route.snapshot.paramMap.get('id')!;
       this.cofrade = await this.firebase.getCofradeById(this.id);
       this.formattedBirthdate = this.formatDateToInput();
+      if(this.cofrade.damaYear != null && this.cofrade.damaYear?.length > 0) this.cofrade.damaYear = this.cofrade.damaYear.join(",");
       this.loading = false;
     } catch (e) {
       this.loading = false;
@@ -53,6 +54,11 @@ export class EditCofradePage implements OnInit {
       if(this.cofrade?.sex?.length === 0) this.cofrade.sex = null;
       if(this.cofrade?.cumpRole?.length === 0) this.cofrade.cumpRole = null;
       if(this.cofrade?.bajaReason?.length === 0) this.cofrade.bajaReason = null;
+      else {
+        this.cofrade.damaYear = this.cofrade?.damaYear?.trim();
+        this.cofrade?.damaYear?.replace(" ", "");
+        this.cofrade.damaYear = this.cofrade.damaYear?.split(",").map(num => Number(num));
+      }
       const [year, month, day] = this.formattedBirthdate.split("-").map(Number);
       this.cofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
       await this.firebase.updateCofradeById(this.id, this.cofrade);

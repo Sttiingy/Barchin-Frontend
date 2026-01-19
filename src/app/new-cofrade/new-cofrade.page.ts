@@ -20,6 +20,7 @@ export class NewCofradePage implements OnInit {
     number: null,
     sex: '',
     birthdate: null,
+    altaYear: null,
     cumpYear: null,
     cumpRole: '',
     damaYear: null,
@@ -62,6 +63,12 @@ export class NewCofradePage implements OnInit {
       if(this.newCofrade?.sex?.length === 0) this.newCofrade.sex = null;
       if(this.newCofrade?.cumpRole?.length === 0) this.newCofrade.cumpRole = null;
       if(this.newCofrade?.bajaReason?.length === 0) this.newCofrade.bajaReason = null;
+      if(this.newCofrade?.damaYear?.length === 0) this.newCofrade.damaYear = null;
+      else {
+        this.newCofrade.damaYear = this.newCofrade?.damaYear?.trim();
+        this.newCofrade?.damaYear?.replace(" ", "");
+        this.newCofrade.damaYear = this.newCofrade.damaYear?.split(",").map(num => Number(num));
+      }
       const [year, month, day] = this.newCofrade.birthdate.split("-").map(Number);
       this.newCofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
       if(this.newCofrade?.number?.length === 0 || this.newCofrade?.number === null) this.newCofrade.number = this.numToBeAssigned;
