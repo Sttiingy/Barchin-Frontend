@@ -34,6 +34,7 @@ export class CofradesPage implements OnInit {
       this.loading = false;
     } catch (e) {
       this.loading = false;
+      console.log(this.firebase.auth.currentUser);
       console.error(e);
     }
   }

@@ -2,6 +2,9 @@
 <ion-content>
   <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
     <div *ngIf="!loading" class="content-wrapper">
+      <ion-button class="backButton" color="secondary-button" shape="round" (click)="navBack()">
+        ATRÁS
+      </ion-button>
       <div class="card-container">
         <ion-col class="nonDisplayPhone">
           <ion-row style="justify-content: center; gap: 10rem;">

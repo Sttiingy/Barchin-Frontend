@@ -17,6 +17,13 @@
 	--ion-color-secondary-shade: #659b6d;
 	--ion-color-secondary-tint: #81b889;
 
+	--ion-color-secondary-button: #ffffff;
+	--ion-color-secondary-button-rgb: 255,255,255;
+	--ion-color-secondary-button-contrast: #408080;
+	--ion-color-secondary-button-contrast-rgb: 64,128,128;
+	--ion-color-secondary-button-shade: #e0e0e0;
+	--ion-color-secondary-button-tint: #ffffff;
+
 	--ion-color-background-light: #ffffff;
 	--ion-color-background-light-rgb: 255,255,255;
 	--ion-color-background-light-contrast: #000000;
@@ -87,6 +94,15 @@
 	--ion-color-contrast-rgb: var(--ion-color-background-light-contrast-rgb);
 	--ion-color-shade: var(--ion-color-background-light-shade);
 	--ion-color-tint: var(--ion-color-background-light-tint);
+}
+
+.ion-color-secondary-button {
+	--ion-color-base: var(--ion-color-secondary-button);
+	--ion-color-base-rgb: var(--ion-color-secondary-button-rgb);
+	--ion-color-contrast: var(--ion-color-secondary-button-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-secondary-button-contrast-rgb);
+	--ion-color-shade: var(--ion-color-secondary-button-shade);
+	--ion-color-tint: var(--ion-color-secondary-button-tint);
 }
 
 .ion-color-background-lightless {

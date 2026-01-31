@@ -70,4 +70,8 @@ export class EditCofradePage implements OnInit {
     }
   }
 
+  navBack() {
+    this.navCtrl.navigateRoot('cofrade-detail/' + this.id);
+  }
+
 }

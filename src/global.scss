@@ -85,3 +85,12 @@ ion-content {
         display: none;
     }
 }
+
+.backButton {
+    font-weight: bold;
+    border: 1px solid;
+    border-radius: 27px;
+    border-color: var(--ion-color-primary);
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+}

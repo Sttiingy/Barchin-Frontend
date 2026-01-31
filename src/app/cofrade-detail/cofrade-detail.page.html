@@ -1,6 +1,9 @@
 <app-header [title]="'DETALLE DEL COFRADE'"></app-header>
 <ion-content>
     <div class="content-wrapper">
+      <ion-button class="backButton" color="secondary-button" shape="round" (click)="navBack()" *ngIf="!loading">
+        ATRÁS
+      </ion-button>
       <div class="card-container" *ngIf="!loading">
         <ion-row class="nonDisplayPhone">
           <ion-col>

@@ -68,4 +68,8 @@ export class CofradeDetailPage implements OnInit {
     }
   }
 
+  navBack() {
+    this.navCtrl.navigateRoot('cofrades');
+  }
+
 }
