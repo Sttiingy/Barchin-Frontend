@@ -72,6 +72,10 @@
               </ion-button>
             </ion-row>
             <ion-row style="gap: 1rem;">
+              <p>ALTA EN :</p>
+              <p class="normal-p">{{cofrade?.altaYear}}</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
               <p>MAYORDOMO EN :</p>
               <p *ngIf="cofrade.mayorYear != null" class="normal-p">{{cofrade.mayorYear}}</p>
               <p *ngIf="cofrade.mayorYear === null" class="normal-p">No ha sido mayordomo</p>

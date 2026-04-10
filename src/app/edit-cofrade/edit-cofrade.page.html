@@ -33,6 +33,17 @@
             </ion-col>
           </ion-row>
 
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 35%;">
+              <p>ALTA EN (AÑO)</p>
+                <ion-input type="number" class="mx-auto" mode="ios" [(ngModel)]="cofrade.altaYear"></ion-input>
+            </ion-col>
+            <ion-col style="max-width: 35%;">
+                <p *ngIf="cofrade?.sex === 'W'">CUMPLIÓ COMO DAMA EN (AÑO/S)</p>
+                <ion-input *ngIf="cofrade?.sex === 'W'" class="mx-auto" mode="ios" [(ngModel)]="cofrade.damaYear"></ion-input>
+            </ion-col>
+          </ion-row>
+
           <ion-row *ngIf="cofrade?.sex === 'W'" style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
               <p>CUMPLIÓ COMO DAMA EN (AÑO)</p>

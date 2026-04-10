@@ -54,6 +54,7 @@ export class EditCofradePage implements OnInit {
       if(this.cofrade?.sex?.length === 0) this.cofrade.sex = null;
       if(this.cofrade?.cumpRole?.length === 0) this.cofrade.cumpRole = null;
       if(this.cofrade?.bajaReason?.length === 0) this.cofrade.bajaReason = null;
+      if(this.cofrade?.damaYear?.length === 0 || this.cofrade?.damaYear?.length === null) this.cofrade.damaYear = [];
       else {
         this.cofrade.damaYear = this.cofrade?.damaYear?.trim();
         this.cofrade?.damaYear?.replace(" ", "");
