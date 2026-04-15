@@ -60,8 +60,10 @@ export class EditCofradePage implements OnInit {
         this.cofrade?.damaYear?.replace(" ", "");
         this.cofrade.damaYear = this.cofrade.damaYear?.split(",").map(num => Number(num));
       }
-      const [year, month, day] = this.formattedBirthdate.split("-").map(Number);
-      this.cofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
+      if(!(this.cofrade.birthdate?.length >= 10) && this.cofrade.birthdate != null) {
+        const [year, month, day] = this.cofrade.birthdate.split("-").map(Number);
+        this.cofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
+      }
       await this.firebase.updateCofradeById(this.id, this.cofrade);
       this.navCtrl.navigateRoot('cofrade-detail/' + this.id);
       this.loading = false;
