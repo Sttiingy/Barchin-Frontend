@@ -16,10 +16,10 @@ export class EditCofradePage implements OnInit {
     public navCtrl: NavController
   ) { }
 
-  public cofrade;
-  public loading: boolean;
-  public id;
-  public formattedBirthdate;
+  public cofrade: any;
+  public loading: boolean = true;
+  public id: any;
+  public formattedBirthdate: any;
 
   async ngOnInit() {
     try {
@@ -58,7 +58,7 @@ export class EditCofradePage implements OnInit {
       else {
         this.cofrade.damaYear = this.cofrade?.damaYear?.trim();
         this.cofrade?.damaYear?.replace(" ", "");
-        this.cofrade.damaYear = this.cofrade.damaYear?.split(",").map(num => Number(num));
+        this.cofrade.damaYear = this.cofrade.damaYear?.split(",").map((num: any) => Number(num));
       }
       if(!(this.cofrade.birthdate?.length >= 10) && this.cofrade.birthdate != null) {
         const [year, month, day] = this.cofrade.birthdate.split("-").map(Number);

@@ -1,4 +1,4 @@
-import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
+import { Component, ContentChild, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { IonInput, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
 
   resetAuthError() {
     this.credentialsError = false;
-  }
+  } 
 
   ngOnDestroy(): void {
     this.onDestroy$.next();

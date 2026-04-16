@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -9,6 +9,19 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./cofrade-detail.page.scss'],
 })
 export class CofradeDetailPage implements OnInit {
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    // Verificamos si es Ctrl (o Cmd en Mac) y la tecla 'n'
+    if ((event.ctrlKey || event.metaKey) && event.key === 'i') {
+      event.preventDefault(); // Evita que el navegador abra una ventana nueva
+      this.navToNewCofrade();
+    }
+  }
+
+  navToNewCofrade() {
+    this.navCtrl.navigateRoot('new-cofrade');
+  }
 
   constructor(
     public route: ActivatedRoute,

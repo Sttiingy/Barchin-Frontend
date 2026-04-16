@@ -55,7 +55,7 @@
 
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
-              <p>FECHA DE NACIMIENTO *</p>
+              <p>FECHA DE NACIMIENTO</p>
               <input type="date" [(ngModel)]="formattedBirthdate" />
             </ion-col>
             <ion-col style="max-width: 35%;">
@@ -84,12 +84,12 @@
 
           <ion-row style="justify-content: center; gap: 10rem;">
             <ion-col style="max-width: 35%;">
-              <p>MAYORDOMO EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.mayorYear" mode="ios"></ion-input>
-            </ion-col>
-            <ion-col style="max-width: 35%;">
               <p>FAROL EN (AÑO)</p>
               <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.farolYear" mode="ios"></ion-input>
+            </ion-col>
+            <ion-col style="max-width: 35%;">
+              <p>MAYORDOMO EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.mayorYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
@@ -110,9 +110,15 @@
           </ion-row>
 
           <ion-row style="justify-content: center; gap: 10rem;">
-            <ion-col style="max-width: 30rem;">
+            <ion-col style="max-width: 35%;">
               <p>REFERENCIA FAMILIAR</p>
               <textarea [(ngModel)]="cofrade.info" >
+
+              </textarea>
+            </ion-col>
+            <ion-col style="max-width: 35%;">
+              <p>INFORMACIÓN ADICIONAL</p>
+              <textarea [(ngModel)]="cofrade.addInfo" >
 
               </textarea>
             </ion-col>
@@ -190,17 +196,18 @@
 
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
-              <p>MAYORDOMO EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.mayorYear" mode="ios"></ion-input>
+              <p>FAROL EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.farolYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
-              <p>FAROL EN (AÑO)</p>
-              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.farolYear" mode="ios"></ion-input>
+              <p>MAYORDOMO EN (AÑO)</p>
+              <ion-input type="number" class="mx-auto" [(ngModel)]="cofrade.mayorYear" mode="ios"></ion-input>
             </ion-col>
           </ion-row>
+
 
           <ion-row style="justify-content: center;">
             <ion-col style="max-width: 90%;">
@@ -223,6 +230,12 @@
             <ion-col style="max-width: 90%;">
               <p>REFERENCIA FAMILIAR</p>
               <textarea [(ngModel)]="cofrade.info"></textarea>
+            </ion-col>
+          </ion-row>
+          <ion-row style="justify-content: center; gap: 10rem;">
+            <ion-col style="max-width: 90%;">
+              <p>INFORAMIÓN ADICIONAL</p>
+              <textarea [(ngModel)]="cofrade.addInfo"></textarea>
             </ion-col>
           </ion-row>
           <ion-row style="justify-content: center; margin-top: 2rem; padding-left: 1rem; padding-right: 1rem;" class="displayOnlyPhone">

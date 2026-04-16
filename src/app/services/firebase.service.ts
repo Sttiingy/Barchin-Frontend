@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Auth, getAuth, indexedDBLocalPersistence, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Capacitor } from '@capacitor/core';
-import { addDoc, collection, doc, Firestore, getDoc, getDocs, getFirestore, query, setDoc, orderBy } from 'firebase/firestore';
+import { addDoc, collection, doc, Firestore, getDoc, getDocs, getFirestore, query, setDoc, orderBy, limit, startAt } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 import { environment } from 'src/environments/environment';
 
@@ -45,7 +45,11 @@ export class FirebaseService {
     return await getDocs(query(collection(this.firestore, 'users')));
   }
   async getAllCofrades() {
-    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
+    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc'),  limit(20), startAt(1)));
+  }
+
+  async getCofradesByPage(page) {
+    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc'), limit(20), startAt(page * 20 + 1)));
   }
 
   async createCofrade(newCofrade) {

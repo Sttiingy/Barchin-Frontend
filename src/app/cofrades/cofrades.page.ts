@@ -10,7 +10,9 @@ import { NavController } from '@ionic/angular';
 export class CofradesPage implements OnInit {
 
   loading: boolean = false;
-  allCofrades;
+  allCofrades: any;
+  page: number = 0;
+  canGoForward: boolean = true;
 
   constructor(
     public firebase: FirebaseService,
@@ -24,11 +26,16 @@ export class CofradesPage implements OnInit {
   async init() {
     try {
       this.loading = true;
-      let res = await this.firebase.getAllCofrades();
+      let res = await this.firebase.getCofradesByPage(this.page);
       this.allCofrades = res.docs.map((doc) => {
         let cofrade: any = { id: doc.id, ...doc.data() };
         return cofrade;
       });
+      if(this.allCofrades.length < 20) {
+        this.canGoForward = false;
+      } else {
+        this.canGoForward = true;
+      }
       console.log(new Date(this.allCofrades[0]?.fechaIni?.seconds * 1000));
       console.log("@COFRADES", this.allCofrades);
       this.loading = false;
@@ -39,7 +46,7 @@ export class CofradesPage implements OnInit {
     }
   }
 
-  async navToCofradeDetail(id) {
+  async navToCofradeDetail(id: any) {
     try {
       this.loading = true;
       console.log(id);
@@ -48,6 +55,20 @@ export class CofradesPage implements OnInit {
     } catch (e) {
       this.loading = false;
       console.error(e);
+    }
+  }
+
+  incrementPage() {
+    if(this.canGoForward) {
+      this.page++;
+      this.init();
+    }
+  }
+
+  decrementPage() {
+    if(this.page > 0) {
+      this.page--;
+      this.init();
     }
   }
 

@@ -28,6 +28,7 @@ export class NewCofradePage implements OnInit {
     mayorYear: null,
     farolYear: null,
     info: null,
+    addInfo: null,
     phoneNumber: null,
     bajaYear: null,
     bajaReason: ''
@@ -35,7 +36,7 @@ export class NewCofradePage implements OnInit {
 
   public loading: boolean = false;
 
-  public numToBeAssigned: number = null;
+  public numToBeAssigned: number ;
   
   async ngOnInit() {
     try {
@@ -64,15 +65,12 @@ export class NewCofradePage implements OnInit {
       if(this.newCofrade?.sex?.length === 0) this.newCofrade.sex = null;
       if(this.newCofrade?.cumpRole?.length === 0) this.newCofrade.cumpRole = null;
       if(this.newCofrade?.bajaReason?.length === 0) this.newCofrade.bajaReason = null;
-      console.log(this.newCofrade);
       if(this.newCofrade?.damaYear?.length === 0 || this.newCofrade?.damaYear === null || this.newCofrade?.damaYear === undefined) this.newCofrade.damaYear = [];
       else {
-        console.log("holllaaa");
         this.newCofrade.damaYear = this.newCofrade?.damaYear?.trim();
         this.newCofrade?.damaYear?.replace(" ", "");
         this.newCofrade.damaYear = this.newCofrade.damaYear?.split(",").map(num => Number(num));
       }
-      console.log(this.newCofrade.birthdate);
       if(!(this.newCofrade.birthdate?.length >= 10) && this.newCofrade.birthdate != null) {
         const [year, month, day] = this.newCofrade.birthdate.split("-").map(Number);
         this.newCofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));

@@ -3,11 +3,18 @@
 <ion-content>
     <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
     <div class="global-wrap">
-        <table class="mt-2">
+         <ion-buttons class="mr-1" slot="end" (click)="incrementPage()">
+            <ion-icon style="color: var(--ion-color-primary);" class="clickable" slot="icon-only" name="arrow-forward"></ion-icon>
+        </ion-buttons>
+        <ion-buttons class="mr-1" slot="end" (click)="decrementPage()">
+            <ion-icon style="color: var(--ion-color-primary);" class="clickable" slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-buttons>
+        <table class="mt-2" style="margin-bottom: 2rem !important;">
             <tr>
                 <th scope="col">NOMBRE</th>
                 <th scope="col">APELLIDOS</th>
                 <th scope="col">NÚMERO DE COFRADE</th>
+                <th scope="col">NÚMERO DE ORDEN</th>
                 <th class="nonDisplayPhone" scope="col">FECHA DE NACIMIENTO</th>
             </tr>
             <ng-container *ngFor="let cofrade of allCofrades; let i = index">
@@ -15,6 +22,7 @@
                     <td class="hide-mobile" >{{cofrade?.name}}</td>
                     <td class="hide-mobile" >{{cofrade?.surname}}</td>
                     <td>{{cofrade?.number}}</td>
+                    <td>{{cofrade?.customId}}</td>
                     <td>{{cofrade?.sex}}</td>
                 </tr>
             </ng-container>
