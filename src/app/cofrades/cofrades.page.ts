@@ -10,6 +10,7 @@ import { NavController } from '@ionic/angular';
 export class CofradesPage implements OnInit {
 
   loading: boolean = false;
+  searchDone: boolean = false;
   allCofrades: any;
   totalCofrades: any;
   totalPages: any;
@@ -87,14 +88,9 @@ export class CofradesPage implements OnInit {
   async searchByFilter() {
     try {
       this.loading = true;
-      let res = await this.firebase.getCofradesByFilter(this.filter, this.searchTerm);
-      if(res != undefined) {
-        this.allCofrades = res.docs.map((doc) => {
-          let cofrade: any = { id: doc.id, ...doc.data() };
-          return cofrade;
-        });
-      }
+      this.allCofrades = await this.firebase.getCofradesByFilter(this.filter, this.searchTerm);
       console.log("@SEARCH RESULTS", this.allCofrades);
+      this.searchDone = true;
       this.loading = false;
     } catch (e) {
       this.loading = false;

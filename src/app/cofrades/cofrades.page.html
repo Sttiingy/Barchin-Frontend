@@ -14,20 +14,25 @@
             </ion-col>
             <ion-col style="display: flex;">
                 <input class="search-input" type="text" placeholder="Buscar..." [(ngModel)]="searchTerm">
-                <ion-button *ngIf="!loading" color="primary" shape="round" (click)="searchByFilter()" [disabled]="searchTerm === null || searchTerm?.length === 0">
+                <ion-button *ngIf="!loading" color="primary" shape="round" (click)="searchByFilter()" [disabled]="searchTerm === null || searchTerm?.length === 0" style="height: 0px; margin-top: 0; margin-bottom: 0;">
                     <p>Buscar</p>
                 </ion-button>
-                <ion-button *ngIf="loading" color="primary" shape="round" [disabled]="true">
+                <ion-button *ngIf="loading" color="primary" shape="round" [disabled]="true" style="height: 0px; margin-top: 0; margin-bottom: 0;">
                     <ion-spinner name="dots" color="secondary"></ion-spinner>
                 </ion-button>
             </ion-col>
-            <ion-col style="justify-content: end; display: flex; max-width: fit-content;">
+            <ion-col style="justify-content: end; display: flex; max-width: fit-content;" *ngIf="!searchDone">
                 <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
                     <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
                 </ion-button>
                     <span style="margin-top: .5rem; color: var(--ion-color-primary); font-weight: bold; margin-right: .3rem; margin-left: .3rem;">{{page + 1}} / {{totalPages}}</span>
                 <ion-button shape="round" size="small" (click)="incrementPage()" [disabled]="!canGoForward">
                     <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col style="justify-content: end; display: flex; max-width: fit-content;" *ngIf="searchDone">
+                <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
+                    <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>

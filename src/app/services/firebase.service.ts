@@ -48,13 +48,23 @@ export class FirebaseService {
     return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
   }
 
-  async getCofradesByFilter(filter: any, searchTerm: any) {
+  async getCofradesByFilter(filter: any, searchTerm: any,) {
+    console.log(filter, searchTerm);
     if(filter === "NOMBRE") {
-      return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('name'), startAt(searchTerm), limit(20)));
-    } else if(filter === "APELLIDO") {
-      return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('surname'), startAt(searchTerm), limit(20)));
-    } else if(filter === "NUM") {
-      return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('number'), startAt(searchTerm), limit(20)));
+      let allCofrades:any = await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
+      allCofrades = allCofrades.docs.map(doc => doc.data());
+
+      const resultados = allCofrades.filter(c => 
+        c.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      console.log("@RESULTADOS", resultados);
+      return resultados;
+
+    // } else if(filter === "APELLIDO") {
+    //   return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('surname'), startAt(searchTerm), limit(20)));
+    // } else if(filter === "NUM") {
+    //   return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('number'), startAt(searchTerm), limit(20)));
+    // }
     }
   }
 
