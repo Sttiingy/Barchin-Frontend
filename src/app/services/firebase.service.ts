@@ -12,11 +12,11 @@ import { environment } from 'src/environments/environment';
 export class FirebaseService {
 
 
-  public firebaseApp;
-  public auth;
-  public firestore;
-  public storage;
-  
+  public firebaseApp: any;
+  public auth: any;
+  public firestore: any;
+  public storage: any;
+
   constructor(
   ) {
     this.init();
@@ -45,14 +45,24 @@ export class FirebaseService {
     return await getDocs(query(collection(this.firestore, 'users')));
   }
   async getAllCofrades() {
-    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc'),  limit(20), startAt(1)));
+    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
   }
 
-  async getCofradesByPage(page) {
+  async getCofradesByFilter(filter: any, searchTerm: any) {
+    if(filter === "NOMBRE") {
+      return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('name'), startAt(searchTerm), limit(20)));
+    } else if(filter === "APELLIDO") {
+      return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('surname'), startAt(searchTerm), limit(20)));
+    } else if(filter === "NUM") {
+      return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('number'), startAt(searchTerm), limit(20)));
+    }
+  }
+
+  async getCofradesByPage(page: any) {
     return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc'), limit(20), startAt(page * 20 + 1)));
   }
 
-  async createCofrade(newCofrade) {
+  async createCofrade(newCofrade: any) {
     return await addDoc(collection(this.firestore, 'cofrades'), newCofrade)
   }
 
@@ -66,7 +76,7 @@ export class FirebaseService {
     }
   }
   
-  async updateCofradeById(id, cofrade) {
+  async updateCofradeById(id: any, cofrade: any) {
     return await setDoc(doc(this.firestore, 'cofrades', id), cofrade);
   }
 }

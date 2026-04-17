@@ -11,8 +11,12 @@ export class CofradesPage implements OnInit {
 
   loading: boolean = false;
   allCofrades: any;
+  totalCofrades: any;
+  totalPages: any;
   page: number = 0;
   canGoForward: boolean = true;
+  filter:any = "NOMBRE";
+  searchTerm: any = null;
 
   constructor(
     public firebase: FirebaseService,
@@ -26,7 +30,16 @@ export class CofradesPage implements OnInit {
   async init() {
     try {
       this.loading = true;
-      let res = await this.firebase.getCofradesByPage(this.page);
+      this.filter = "NOMBRE";
+      this.searchTerm = null;
+      let res = await this.firebase.getAllCofrades();
+      this.totalCofrades = res.docs.map((doc) => {
+        let cofrade: any = { id: doc.id, ...doc.data() };
+        return cofrade;
+      });
+      this.totalCofrades = this.totalCofrades.length;
+      this.totalPages = Math.ceil(this.totalCofrades / 20);
+      res = await this.firebase.getCofradesByPage(this.page);
       this.allCofrades = res.docs.map((doc) => {
         let cofrade: any = { id: doc.id, ...doc.data() };
         return cofrade;
@@ -49,7 +62,6 @@ export class CofradesPage implements OnInit {
   async navToCofradeDetail(id: any) {
     try {
       this.loading = true;
-      console.log(id);
       this.navCtrl.navigateRoot('cofrade-detail/' + id);
       this.loading = false;
     } catch (e) {
@@ -69,6 +81,24 @@ export class CofradesPage implements OnInit {
     if(this.page > 0) {
       this.page--;
       this.init();
+    }
+  }
+
+  async searchByFilter() {
+    try {
+      this.loading = true;
+      let res = await this.firebase.getCofradesByFilter(this.filter, this.searchTerm);
+      if(res != undefined) {
+        this.allCofrades = res.docs.map((doc) => {
+          let cofrade: any = { id: doc.id, ...doc.data() };
+          return cofrade;
+        });
+      }
+      console.log("@SEARCH RESULTS", this.allCofrades);
+      this.loading = false;
+    } catch (e) {
+      this.loading = false;
+      console.error(e);
     }
   }
 

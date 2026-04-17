@@ -18,3 +18,29 @@
         overflow: hidden;
     }
 }
+
+select {
+    color: var(--ion-color-primary);
+    background: white;
+    border-radius: 20px;
+    border:1px solid var(--ion-color-primary);
+    padding-left: 10px;
+}
+
+ion-input {
+    background: #cfcfcf;
+    border-radius: 10px;
+    --padding-start: 10px;
+    margin-left: 0;
+    --highlight-color: var(--ion-color-primary) !important;
+    color: black;
+}
+.search-input {
+    background: white; 
+    border-radius: 26px; 
+    border: 1px solid; 
+    border-color: var(--ion-color-primary); 
+    color: var(--ion-color-primary); 
+    width: 100%; 
+    padding-left: 1rem;
+}

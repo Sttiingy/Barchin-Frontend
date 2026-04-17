@@ -89,8 +89,13 @@ ion-content {
 .backButton {
     font-weight: bold;
     border: 1px solid;
+    color: var(--ion-color-primary);
     border-radius: 27px;
     border-color: var(--ion-color-primary);
     margin-top: 1rem;
     margin-bottom: -1rem;
+    --background: none;
+    &:hover {
+        background: lightgray;
+    }
 }
