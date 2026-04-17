@@ -33,6 +33,7 @@ export class CofradesPage implements OnInit {
       this.loading = true;
       this.filter = "NOMBRE";
       this.searchTerm = null;
+      this.searchDone = false;
       let res = await this.firebase.getAllCofrades();
       this.totalCofrades = res.docs.map((doc) => {
         let cofrade: any = { id: doc.id, ...doc.data() };

@@ -52,20 +52,46 @@ export class FirebaseService {
     console.log(filter, searchTerm);
     if(filter === "NOMBRE") {
       let allCofrades:any = await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
-      allCofrades = allCofrades.docs.map(doc => doc.data());
+      console.log("@BUSCANDO POR NOMBRE", allCofrades);
+      allCofrades = allCofrades.docs.map((doc) => {
+        let cofrade: any = { id: doc.id, ...doc.data() };
+        return cofrade;
+      });
 
       const resultados = allCofrades.filter(c => 
         c.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       console.log("@RESULTADOS", resultados);
       return resultados;
-
-    // } else if(filter === "APELLIDO") {
-    //   return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('surname'), startAt(searchTerm), limit(20)));
-    // } else if(filter === "NUM") {
-    //   return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('number'), startAt(searchTerm), limit(20)));
-    // }
     }
+    else if(filter === "APELLIDO") {
+      let allCofrades:any = await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
+      allCofrades = allCofrades.docs.map((doc) => {
+        let cofrade: any = { id: doc.id, ...doc.data() };
+        return cofrade;
+      });
+
+      const resultados = allCofrades.filter(c => 
+        c.surname.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      console.log("@RESULTADOS", resultados);
+      return resultados;
+
+    }
+    else if(filter === "NUM") {
+      let allCofrades:any = await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
+      allCofrades = allCofrades.docs.map((doc) => {
+        let cofrade: any = { id: doc.id, ...doc.data() };
+        return cofrade;
+      });
+
+      const resultados = allCofrades.filter(c => 
+        c.number.toString() === searchTerm.toString()
+      );
+      console.log("@RESULTADOS", resultados);
+      return resultados;
+    }
+    return [];
   }
 
   async getCofradesByPage(page: any) {

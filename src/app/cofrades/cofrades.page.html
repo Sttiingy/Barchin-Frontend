@@ -5,7 +5,7 @@
     <div class="global-wrap nonDisplayPhone" *ngIf="!loading">
         <ion-row style="justify-content: end; margin-top: 2rem; margin-bottom: .5rem;">
             <ion-col style="justify-content: start; display: flex; max-width: fit-content;">
-                <span style="margin-top: .5rem; color: var(--ion-color-primary); font-weight: bold; margin-right: .3rem; margin-left: .3rem;">BUSCAR POR:</span>
+                <span style="margin-top: .5rem; color: var(--ion-color-primary); font-weight: bold; margin-right: .3rem; margin-left: .3rem;">FILTRAR POR:</span>
                 <select [(ngModel)]="filter">
                     <option value="NOMBRE" selected>Nombre</option>
                     <option value="APELLIDO">Apellido</option>
@@ -31,8 +31,8 @@
                 </ion-button>
             </ion-col>
             <ion-col style="justify-content: end; display: flex; max-width: fit-content;" *ngIf="searchDone">
-                <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
-                    <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+                <ion-button shape="round" size="small" (click)="init()">
+                    <ion-icon slot="icon-only" name="reload-outline"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>
@@ -56,7 +56,7 @@
         </table>
     </div>
     <div class="global-wrap displayOnlyPhone" *ngIf="!loading">
-        <ion-row style="justify-content: end; margin-top: 2rem; margin-bottom: .5rem;">
+        <ion-row style="justify-content: end; margin-bottom: .5rem;">
             <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
                 <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
             </ion-button>
@@ -69,11 +69,13 @@
             <tr>
                 <th scope="col">NOMBRE</th>
                 <th scope="col">APELLIDOS</th>
+                <th scope="col"># COFRADE</th>
             </tr>
             <ng-container *ngFor="let cofrade of allCofrades; let i = index">
                 <tr class="not-header clickable" [class.row-background]="i % 2 === 0" (click)="navToCofradeDetail(cofrade.id)">
                     <td class="hide-mobile" >{{cofrade?.name}}</td>
                     <td class="hide-mobile" >{{cofrade?.surname}}</td>
+                    <td class="hide-mobile" >{{cofrade?.number}}</td>
                 </tr>
             </ng-container>
         </table>
