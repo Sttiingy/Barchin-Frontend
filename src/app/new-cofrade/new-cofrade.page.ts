@@ -55,8 +55,8 @@ export class NewCofradePage implements OnInit {
   }
 
   buttonIsDisabled() {
-    return this.newCofrade.name?.length === 0 || this.newCofrade.name?.length === null || this.newCofrade.surname?.length === 0 || this.newCofrade.surname?.length === null
-    || this.newCofrade.sex?.length === 0 || this.newCofrade.sex?.length === null || this.newCofrade.sex?.length === null
+    return this.newCofrade.name?.length === 0 || this.newCofrade.name === null || this.newCofrade.surname?.length === 0 || this.newCofrade.surname === null
+    || this.newCofrade.sex?.length === 0 || this.newCofrade.sex === null
   }
 
   async createCofrade() {

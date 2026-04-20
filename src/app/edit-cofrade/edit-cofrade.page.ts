@@ -46,8 +46,8 @@ export class EditCofradePage implements OnInit {
   }
 
   buttonIsDisabled() {
-    return this.cofrade.name?.length === 0 || this.cofrade.name?.length === null || this.cofrade.surname?.length === 0 || this.cofrade.surname?.length === null
-    || this.cofrade.sex?.length === 0 || this.cofrade.sex?.length === null || this.formattedBirthdate?.length < 10 || this.formattedBirthdate === null || this.cofrade.sex?.length === null
+    return this.cofrade.name?.length === 0 || this.cofrade.name === null || this.cofrade.surname?.length === 0 || this.cofrade.surname?.length === null
+    || this.cofrade.sex?.length === 0 || this.cofrade.sex?.length === null || this.cofrade.sex?.length === null
     || this.cofrade.number === null || this.cofrade.number?.length === 0;
   }
 
