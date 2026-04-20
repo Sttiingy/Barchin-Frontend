@@ -56,7 +56,7 @@
         </table>
     </div>
     <div class="global-wrap displayOnlyPhone" *ngIf="!loading">
-        <ion-row style="justify-content: end; margin-bottom: .5rem;" *ngIf="!searchDone">
+        <ion-row style="justify-content: end; margin-bottom: .5rem; margin-top: .5rem;" *ngIf="!searchDone">
             <ion-icon name="search-outline" (click)="openSearchModal()" style="color: var(--ion-color-primary); width: 30px; height: 30px; margin: auto auto auto 0;"></ion-icon>
             <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
                 <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
