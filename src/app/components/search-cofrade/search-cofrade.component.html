@@ -1,0 +1,29 @@
+<ion-header mode="ios">
+  <ion-toolbar style="--background: var(--ion-color-background-light); --border-color: #aeaeae;">
+    <ion-title style="color: var(--ion-color-primary);">BUSCAR COFRADE</ion-title>
+    <ion-buttons class="mr-1" slot="end" (click)="cancel()">
+      <ion-icon style="color: var(--ion-color-primary);" class="clickable" slot="icon-only" name="close-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="global-wrap">
+   <ion-col style="display: flex; flex-direction: column;">
+      <span style="margin-top: .5rem; color: var(--ion-color-primary); font-weight: bold; margin-right: .3rem; margin-left: .3rem;">FILTRAR POR:</span>
+      <select [(ngModel)]="filter">
+        <option value="NOMBRE" selected>Nombre</option>
+        <option value="APELLIDO">Apellido</option>
+        <option value="NUM">Número de cofrade</option>
+      </select>
+    </ion-col>
+    <ion-col style="display: flex; flex-direction: column; margin-top: 2rem;">
+      <span style="margin-top: .5rem; color: var(--ion-color-primary); font-weight: bold; margin-right: .3rem; margin-left: .3rem;">TÉRMINO DE BÚSQUEDA:</span>
+      <input class="search-input" type="text" placeholder="Buscar..." [(ngModel)]="searchTerm">
+    </ion-col>
+    <ion-row style="width: 100%; justify-content: center; margin-top: 6rem;">
+      <ion-button color="primary" shape="round" (click)="confirm()" [disabled]="searchTerm === null || searchTerm?.length === 0" style="height: 0px; margin-top: 0; margin-bottom: 0;">
+        <p>Buscar</p>
+      </ion-button>
+    </ion-row>
+  </div>
+</ion-content>

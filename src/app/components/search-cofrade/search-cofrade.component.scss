@@ -1,0 +1,20 @@
+select {
+    color: var(--ion-color-primary);
+    background: white;
+    border-radius: 20px;
+    border:1px solid var(--ion-color-primary);
+    padding-left: 10px;
+    height: 2.5rem;
+    margin-top: 1rem;
+}
+
+.search-input {
+    background: white; 
+    border-radius: 26px; 
+    border: 1px solid; 
+    border-color: var(--ion-color-primary); 
+    color: var(--ion-color-primary); 
+    padding-left: 1rem;
+    margin-top: 1rem;
+    height: 2.5rem;
+}
