@@ -29,10 +29,10 @@ export class CofradeDetailPage implements OnInit {
     public navCtrl: NavController
   ) { }
 
-  public cofrade;
-  public loading: boolean;
-  public age: number;
-  public id;
+  public cofrade: any;
+  public loading: boolean = false;
+  public age: any;
+  public id: any;
 
   async ngOnInit() {
     try {
@@ -40,8 +40,9 @@ export class CofradeDetailPage implements OnInit {
       this.id = await this.route.snapshot.paramMap.get('id')!;
       this.cofrade = await this.firebase.getCofradeById(this.id);
       console.log(this.cofrade);
-      if(!this.cofradeIsDead()) {
-        this.age = this.calculateAge(this.cofrade.birthdate.toDate());
+      if(!this.cofradeIsDead() && this.cofrade?.birthdate != null) {
+        this.cofrade.birthdate = new Date(this.cofrade.birthdate.seconds * 1000);
+      this.age = this.calculateAge(this.cofrade.birthdate);
       }
       console.log("@DETAIL " + this.id);
       this.loading = false;
@@ -56,6 +57,7 @@ export class CofradeDetailPage implements OnInit {
   }
 
   calculateAge(birthdate: Date): number {
+    console.log("@CALCULANDO EDAD", birthdate);
     const today = new Date();
     let age = today.getFullYear() - birthdate.getFullYear();
     

@@ -32,7 +32,7 @@
             </ion-col>
             <ion-col style="justify-content: end; display: flex; max-width: fit-content;" *ngIf="searchDone">
                 <ion-button shape="round" size="small" (click)="init()">
-                    <ion-icon slot="icon-only" name="reload-outline"></ion-icon>
+                    <ion-icon slot="icon-only" name="refresh-outline" style="transform: scaleX(-1);"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>
@@ -56,7 +56,8 @@
         </table>
     </div>
     <div class="global-wrap displayOnlyPhone" *ngIf="!loading">
-        <ion-row style="justify-content: end; margin-bottom: .5rem;">
+        <ion-row style="justify-content: end; margin-bottom: .5rem;" *ngIf="!searchDone">
+            <ion-icon name="search-outline" (click)="openSearchModal()" style="color: var(--ion-color-primary); width: 30px; height: 30px; margin: auto auto auto 0;"></ion-icon>
             <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
                 <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
             </ion-button>
@@ -64,6 +65,9 @@
             <ion-button shape="round" size="small" (click)="incrementPage()" [disabled]="!canGoForward">
                 <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
             </ion-button>
+        </ion-row>
+        <ion-row style="justify-content: end; margin-bottom: .5rem;" *ngIf="searchDone">
+            <ion-icon name="refresh-outline" (click)="init()" style="color: var(--ion-color-primary); width: 30px; height: 30px; transform: scaleX(-1);"></ion-icon>
         </ion-row>
         <table style="margin-bottom: 2rem !important;">
             <tr>

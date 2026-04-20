@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+import { SearchCofradeComponent } from '../components/search-cofrade/search-cofrade.component';
 
 @Component({
   selector: 'app-cofrades',
@@ -21,7 +22,8 @@ export class CofradesPage implements OnInit {
 
   constructor(
     public firebase: FirebaseService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private modalCtrl: ModalController
   ) { }
 
   async ngOnInit() {
@@ -58,6 +60,20 @@ export class CofradesPage implements OnInit {
       this.loading = false;
       console.log(this.firebase.auth.currentUser);
       console.error(e);
+    }
+  }
+
+  async openSearchModal() {
+    const modal = await this.modalCtrl.create({
+      component: SearchCofradeComponent,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if(role === "confirm") {
+      this.filter = data.filter;
+      this.searchTerm = data.searchTerm;
+      await this.searchByFilter();
     }
   }
 

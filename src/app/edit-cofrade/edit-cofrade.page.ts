@@ -26,7 +26,9 @@ export class EditCofradePage implements OnInit {
       this.loading = true;
       this.id = await this.route.snapshot.paramMap.get('id')!;
       this.cofrade = await this.firebase.getCofradeById(this.id);
-      this.formattedBirthdate = this.formatDateToInput();
+      if(this.cofrade?.birthdate != null) {
+        this.formattedBirthdate = this.formatDateToInput();
+      }
       if(this.cofrade.damaYear != null && this.cofrade.damaYear?.length > 0) this.cofrade.damaYear = this.cofrade.damaYear.join(",");
       this.loading = false;
     } catch (e) {
@@ -36,9 +38,10 @@ export class EditCofradePage implements OnInit {
   }
 
   formatDateToInput() {
-    const year = this.cofrade.birthdate.toDate().getFullYear();
-    const month = String(this.cofrade.birthdate.toDate().getMonth() + 1).padStart(2, "0"); // months are 0-based
-    const day = String(this.cofrade.birthdate.toDate().getDate()).padStart(2, "0");
+    let date = new Date(this.cofrade.birthdate?.seconds * 1000);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // months are 0-based
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
 
@@ -60,8 +63,13 @@ export class EditCofradePage implements OnInit {
         this.cofrade?.damaYear?.replace(" ", "");
         this.cofrade.damaYear = this.cofrade.damaYear?.split(",").map((num: any) => Number(num));
       }
-      if(!(this.cofrade.birthdate?.length >= 10) && this.cofrade.birthdate != null) {
-        const [year, month, day] = this.cofrade.birthdate.split("-").map(Number);
+      if(this.cofrade?.bajaYear?.length === 0 || this.cofrade?.bajaYear === null) {
+        this.cofrade.bajaYear = null;
+        this.cofrade.bajaReason = null;
+      }
+      console.log(this.formattedBirthdate.length);
+      if((this.formattedBirthdate?.length >= 10) && this.formattedBirthdate != null) {
+        const [year, month, day] = this.formattedBirthdate.split("-").map(Number);
         this.cofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
       }
       await this.firebase.updateCofradeById(this.id, this.cofrade);

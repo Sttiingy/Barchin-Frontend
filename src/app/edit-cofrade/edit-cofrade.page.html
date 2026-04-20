@@ -2,7 +2,8 @@
 <ion-content>
   <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
     <div *ngIf="!loading" class="content-wrapper">
-      <ion-button class="backButton" color="secondary-button" shape="round" (click)="navBack()">
+      <ion-button shape="round" class="backButton" size="small" (click)="navBack()" *ngIf="!loading">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
         ATRÁS
       </ion-button>
       <div class="card-container">

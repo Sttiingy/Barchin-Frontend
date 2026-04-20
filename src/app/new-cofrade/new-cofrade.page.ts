@@ -36,7 +36,7 @@ export class NewCofradePage implements OnInit {
 
   public loading: boolean = false;
 
-  public numToBeAssigned: number ;
+  public numToBeAssigned: any ;
   
   async ngOnInit() {
     try {

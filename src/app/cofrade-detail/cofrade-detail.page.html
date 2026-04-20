@@ -38,9 +38,13 @@
               <p>EDAD :</p>
               <p class="normal-p">{{age}}</p>
             </ion-row>
-            <ion-row style="gap: 1rem;">
+            <ion-row style="gap: 1rem;" *ngIf="cofrade?.birthdate != null">
               <p>FECHA DE NACIMIENTO :</p>
-              <p class="normal-p">{{cofrade?.birthdate?.toDate() | date:'dd/MM/yyyy'}}</p>
+              <p class="normal-p">{{cofrade?.birthdate | date:'dd/MM/yyyy'}}</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;" *ngIf="cofrade?.birthdate === null">
+              <p>FECHA DE NACIMIENTO :</p>
+              <p class="normal-p">s/d</p>
             </ion-row>
             <ion-row style="gap: 1rem;">
               <p>TELÉFONO :</p>
@@ -141,9 +145,13 @@
                 <p>EDAD :</p>
                 <p class="normal-p">{{age}}</p>
               </ion-row>
-              <ion-row style="gap: 1rem;">
+              <ion-row style="gap: 1rem;" *ngIf="cofrade?.birthdate != null">
                 <p>FECHA DE NACIMIENTO :</p>
-                <p class="normal-p">{{cofrade?.birthdate?.toDate() | date:'dd/MM/yyyy'}}</p>
+                <p class="normal-p">{{cofrade?.birthdate | date:'dd/MM/yyyy'}}</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;" *ngIf="cofrade?.birthdate === null">
+                <p>FECHA DE NACIMIENTO :</p>
+                <p class="normal-p">s/d</p>
               </ion-row>
               <ion-row style="gap: 1rem;">
                 <p>TELÉFONO :</p>

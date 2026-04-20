@@ -113,6 +113,7 @@ export class FirebaseService {
   }
   
   async updateCofradeById(id: any, cofrade: any) {
+    console.log("@ACTUALIZANDO COFRADE", id, cofrade);
     return await setDoc(doc(this.firestore, 'cofrades', id), cofrade);
   }
 }
