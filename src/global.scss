@@ -99,3 +99,23 @@ ion-content {
         background: lightgray;
     }
 }
+
+.alert-custom {
+    --background: var(--ion-color-background-light);
+    --ion-text-color: black;
+}
+
+.cancel-alert-button {
+  border-top: 1px solid var(--ion-color-primary) !important;
+  &:hover {
+        background: lightgray;
+    }
+}
+
+.confirm-alert-button {
+  border-left: 1px solid var(--ion-color-primary) !important;
+  border-top: 1px solid var(--ion-color-primary) !important;
+  &:hover {
+        background: lightgray;
+    }
+}

@@ -58,10 +58,12 @@ export class AuthService {
               {
                 text: "Cancelar",
                 role: 'cancel',
+                cssClass: 'cancel-alert-button'
               },
               {
                 text: "Cerrar sesión",
                 role: 'logout',
+                cssClass: 'confirm-alert-button',
                 handler: async () => {
                     await this.firebaseService.auth.signOut();
                     this.isAuthenticated$.next(false);
@@ -72,7 +74,8 @@ export class AuthService {
                     });
                 }
               }
-            ]
+            ],
+            cssClass: 'alert-custom'
           });
         await alert.present();
     }
