@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { ModalController, NavController } from '@ionic/angular';
 import { SearchCofradeComponent } from '../components/search-cofrade/search-cofrade.component';
@@ -19,6 +19,15 @@ export class CofradesPage implements OnInit {
   canGoForward: boolean = true;
   filter:any = "NOMBRE";
   searchTerm: any = null;
+
+  @HostListener('window:keydown', ['$event'])
+  async handleKeyboardEvent(event: KeyboardEvent) {
+    // Verificamos si es Ctrl (o Cmd en Mac) y la tecla 'i'
+    if (event.key === 'Enter' && this.searchTerm != null && this.searchTerm.length > 0) {
+      event.preventDefault(); // opcional, según lo que quieras evitar
+      await this.searchByFilter();
+    }
+  }
 
   constructor(
     public firebase: FirebaseService,

@@ -34,7 +34,7 @@
               </ion-row>
               <p *ngIf="cofrade.damaYear === null || cofrade?.damaYear?.length === 0" class="normal-p">No ha sido dama</p>
             </ion-row>
-            <ion-row *ngIf="!cofradeIsDead()" style="gap: 1rem;">
+            <ion-row *ngIf="!cofradeIsDead() && cofrade?.birthdate != null" style="gap: 1rem;">
               <p>EDAD :</p>
               <p class="normal-p">{{age}}</p>
             </ion-row>
@@ -64,7 +64,6 @@
               <p>CUMPLIÓ EN :</p>
               <p class="normal-p">{{cofrade.cumpYear}}</p>
             </ion-row>
-            
           </ion-col>
           <ion-col>
             <ion-row style="height: 43px; justify-content: space-between;">
@@ -81,15 +80,15 @@
               <p class="normal-p">{{cofrade?.altaYear}}</p>
             </ion-row>
             <ion-row style="gap: 1rem;">
-              <p>MAYORDOMO EN :</p>
-              <p *ngIf="cofrade.mayorYear != null" class="normal-p">{{cofrade.mayorYear}}</p>
-              <p *ngIf="cofrade.mayorYear === null" class="normal-p">No ha sido mayordomo</p>
-            </ion-row>
-            <ion-row style="gap: 1rem;">
               <p>FAROL EN :</p>
               <p *ngIf="cofrade.farolYear != null" class="normal-p">{{cofrade.farolYear}}</p>
               <p *ngIf="cofrade.farolYear === null" class="normal-p">No ha sido farol</p>
             </ion-row> 
+            <ion-row style="gap: 1rem;">
+              <p>MAYORDOMO EN :</p>
+              <p *ngIf="cofrade.mayorYear != null" class="normal-p">{{cofrade.mayorYear}}</p>
+              <p *ngIf="cofrade.mayorYear === null" class="normal-p">No ha sido mayordomo</p>
+            </ion-row>
             <ion-row *ngIf="cofrade.bajaYear != null" style="gap: 1rem;">
               <p>BAJA EN:</p>
               <p class="normal-p">{{cofrade.bajaYear}}</p>
@@ -105,6 +104,11 @@
               <p *ngIf="cofrade?.info != null && cofrade?.info?.length > 0" class="normal-p">{{cofrade.info}}</p>
               <p *ngIf="cofrade?.info === null || cofrade?.info?.length === 0" class="normal-p">s/d</p>
             </ion-row>
+            <ion-row style="gap: 1rem;">
+                <p>INFORMACIÓN ADICIONAL :</p>
+                <p *ngIf="cofrade?.addInfo != null && cofrade?.addInfo?.length > 0" class="normal-p">{{cofrade.addInfo}}</p>
+                <p *ngIf="cofrade?.addInfo === null || cofrade?.addInfo?.length === 0" class="normal-p">s/d</p>
+              </ion-row>
           </ion-col>
         </ion-row>
         <div class="displayOnlyPhone" >
@@ -141,7 +145,7 @@
                 </ion-row>
                 <p *ngIf="cofrade.damaYear === null || cofrade?.damaYear?.length === 0" class="normal-p">No ha sido dama</p>
               </ion-row>
-              <ion-row *ngIf="!cofradeIsDead()" style="gap: 1rem;">
+              <ion-row *ngIf="!cofradeIsDead() && cofrade?.birthdate != null" style="gap: 1rem;">
                 <p>EDAD :</p>
                 <p class="normal-p">{{age}}</p>
               </ion-row>
@@ -172,15 +176,15 @@
                 <p class="normal-p">{{cofrade.cumpYear}}</p>
               </ion-row>
               <ion-row style="gap: 1rem;">
-                <p>MAYORDOMO EN :</p>
-                <p *ngIf="cofrade.mayorYear != null" class="normal-p">{{cofrade.mayorYear}}</p>
-                <p *ngIf="cofrade.mayorYear === null" class="normal-p">No ha sido mayordomo</p>
-              </ion-row>
-              <ion-row style="gap: 1rem;">
                 <p>FAROL EN :</p>
                 <p *ngIf="cofrade.farolYear != null" class="normal-p">{{cofrade.farolYear}}</p>
                 <p *ngIf="cofrade.farolYear === null" class="normal-p">No ha sido farol</p>
               </ion-row> 
+              <ion-row style="gap: 1rem;">
+                <p>MAYORDOMO EN :</p>
+                <p *ngIf="cofrade.mayorYear != null" class="normal-p">{{cofrade.mayorYear}}</p>
+                <p *ngIf="cofrade.mayorYear === null" class="normal-p">No ha sido mayordomo</p>
+              </ion-row>
               <ion-row *ngIf="cofrade.bajaYear != null" style="gap: 1rem;">
                 <p>BAJA EN:</p>
                 <p class="normal-p">{{cofrade.bajaYear}}</p>
@@ -195,6 +199,11 @@
                 <p>REFERENCIA FAMILIAR :</p>
                 <p *ngIf="cofrade?.info != null && cofrade?.info?.length > 0" class="normal-p">{{cofrade.info}}</p>
                 <p *ngIf="cofrade?.info === null || cofrade?.info?.length === 0" class="normal-p">s/d</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>INFORMACIÓN ADICIONAL :</p>
+                <p *ngIf="cofrade?.addInfo != null && cofrade?.addInfo?.length > 0" class="normal-p">{{cofrade.addInfo}}</p>
+                <p *ngIf="cofrade?.addInfo === null || cofrade?.addInfo?.length === 0" class="normal-p">s/d</p>
               </ion-row>
           </ion-col>
         </div>

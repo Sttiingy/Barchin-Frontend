@@ -67,11 +67,11 @@ export class EditCofradePage implements OnInit {
         this.cofrade.bajaYear = null;
         this.cofrade.bajaReason = null;
       }
-      console.log(this.formattedBirthdate.length);
       if((this.formattedBirthdate?.length >= 10) && this.formattedBirthdate != null) {
         const [year, month, day] = this.formattedBirthdate.split("-").map(Number);
         this.cofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
       }
+      else this.cofrade.birthdate = null;
       await this.firebase.updateCofradeById(this.id, this.cofrade);
       this.navCtrl.navigateRoot('cofrade-detail/' + this.id);
       this.loading = false;

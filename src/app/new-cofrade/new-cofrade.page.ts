@@ -75,6 +75,7 @@ export class NewCofradePage implements OnInit {
         const [year, month, day] = this.newCofrade.birthdate.split("-").map(Number);
         this.newCofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
       }
+      else this.newCofrade.birthdate = null;
       if(this.newCofrade?.number?.length === 0 || this.newCofrade?.number === null) this.newCofrade.number = this.numToBeAssigned;
       this.newCofrade.customId = this.numToBeAssigned;
       console.log(this.newCofrade);

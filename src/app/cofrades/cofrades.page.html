@@ -42,7 +42,7 @@
                 <th scope="col">APELLIDOS</th>
                 <th scope="col">NÚMERO DE COFRADE</th>
                 <th scope="col">NÚMERO DE ORDEN</th>
-                <th class="nonDisplayPhone" scope="col">FECHA DE NACIMIENTO</th>
+                <th class="nonDisplayPhone" scope="col">SEXO</th>
             </tr>
             <ng-container *ngFor="let cofrade of allCofrades; let i = index">
                 <tr class="not-header clickable" [class.row-background]="i % 2 === 0" (click)="navToCofradeDetail(cofrade.id)">
@@ -50,7 +50,8 @@
                     <td>{{cofrade?.surname}}</td>
                     <td>{{cofrade?.number}}</td>
                     <td>{{cofrade?.customId}}</td>
-                    <td>{{cofrade?.sex}}</td>
+                    <td *ngIf="cofrade.sex === 'M'">Hombre</td>
+                    <td *ngIf="cofrade.sex === 'W'">Mujer</td>
                 </tr>
             </ng-container>
         </table>

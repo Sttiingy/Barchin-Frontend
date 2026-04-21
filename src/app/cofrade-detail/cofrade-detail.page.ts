@@ -12,7 +12,7 @@ export class CofradeDetailPage implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    // Verificamos si es Ctrl (o Cmd en Mac) y la tecla 'n'
+    // Verificamos si es Ctrl (o Cmd en Mac) y la tecla 'i'
     if ((event.ctrlKey || event.metaKey) && event.key === 'i') {
       event.preventDefault(); // Evita que el navegador abra una ventana nueva
       this.navToNewCofrade();
