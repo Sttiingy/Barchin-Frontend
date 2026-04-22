@@ -2,7 +2,7 @@
 
 <ion-content>
     <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
-    <div class="global-wrap">
+    <div class="global-wrap nonDisplayPhone" *ngIf="!loading">
         <table class="mt-2">
             <tr>
                 <th scope="col">USUARIO</th>
@@ -16,11 +16,20 @@
                     <td>{{user?.role}}</td>
                 </tr>
             </ng-container>
-            <!-- <tr class="not-header clickable">
-                <td class="all-row">
-                    Añadir Usuario
-                </td>
-            </tr> -->
+        </table>
+    </div>
+    <div class="global-wrap displayOnlyPhone" *ngIf="!loading">
+        <table class="mt-2">
+            <tr>
+                <th scope="col">USUARIO</th>
+                <th scope="col">PUESTO</th>
+            </tr>
+            <ng-container *ngFor="let user of allUsers; let i = index">
+                <tr class="not-header clickable" [class.row-background]="i % 2 === 0" (click)="navToAdminDetail(user?.id)">
+                    <td>{{user?.displayName}}</td>
+                    <td>{{user?.role}}</td>
+                </tr>
+            </ng-container>
         </table>
     </div>
 </ion-content>

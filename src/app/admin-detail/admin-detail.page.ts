@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
 import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
+import { ActionsPopoverComponent } from '../components/actions-popover/actions-popover.component';
 
 @Component({
   selector: 'app-admin-detail',
@@ -17,7 +18,8 @@ export class AdminDetailPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public firebase: FirebaseService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public popoverController: PopoverController
   ) { }
 
   async ngOnInit() {
@@ -47,6 +49,18 @@ export class AdminDetailPage implements OnInit {
       this.loading = false;
       console.error(e);
     }
+  }
+
+  async presentActionsPopover(e: Event) {
+    const popover = await this.popoverController.create({
+      component: ActionsPopoverComponent,
+      event: e,
+    });
+
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    console.log(`Popover dismissed with role: ${role}`);
   }
 
 }

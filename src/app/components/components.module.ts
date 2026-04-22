@@ -6,18 +6,21 @@ import { HeaderComponent } from "./header/header.component";
 import { MenuComponent } from "./menu/menu.component";
 import { SearchCofradeComponent } from "./search-cofrade/search-cofrade.component";
 import { FormsModule } from "@angular/forms";
+import { ActionsPopoverComponent } from "./actions-popover/actions-popover.component";
 
 @NgModule({
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [
         HeaderComponent,
         MenuComponent,
-        SearchCofradeComponent
+        SearchCofradeComponent,
+        ActionsPopoverComponent
     ],
     exports: [
         HeaderComponent,
         MenuComponent,
-        SearchCofradeComponent
+        SearchCofradeComponent,
+        ActionsPopoverComponent
     ],
     imports: [
         CommonModule,

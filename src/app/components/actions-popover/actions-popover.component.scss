@@ -1,0 +1,8 @@
+.action-item {
+    justify-content: left;
+    margin: 0;
+    display: grid;
+    &:hover {
+        background: lightgray;
+    }
+}

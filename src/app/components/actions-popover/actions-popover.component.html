@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-col style="display: flex; flex-direction: column; padding: 0;">
+    <ion-button fill="clear" class="action-item" style="border-bottom: solid 2px lightgray;" (click)="editAdmin('password')">
+      <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+      CAMBIAR CONTRASEÑA
+    </ion-button>
+    <ion-button fill="clear" class="action-item" style="border-bottom: solid 2px lightgray;" (click)="editAdmin('name')">
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+      CAMBIAR NOMBRE
+    </ion-button>
+    <ion-button fill="clear" class="action-item" style="border-bottom: solid 2px lightgray;" (click)="editAdmin('email')">
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
+      CAMBIAR EMAIL
+    </ion-button>
+    <ion-button fill="clear" class="action-item" (click)="editAdmin('position')">
+      <ion-icon slot="start" name="briefcase-outline"></ion-icon>
+      CAMBIAR PUESTO
+    </ion-button>
+  </ion-col>
+</ion-content>
