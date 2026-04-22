@@ -71,9 +71,11 @@ export class NewCofradePage implements OnInit {
         this.newCofrade?.damaYear?.replace(" ", "");
         this.newCofrade.damaYear = this.newCofrade.damaYear?.split(",").map(num => Number(num));
       }
-      if(!(this.newCofrade.birthdate?.length >= 10) && this.newCofrade.birthdate != null) {
+      console.log(this.newCofrade.birthdate);
+      if((this.newCofrade.birthdate?.length >= 10) && this.newCofrade.birthdate != null) {
         const [year, month, day] = this.newCofrade.birthdate.split("-").map(Number);
         this.newCofrade.birthdate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
+        console.log(this.newCofrade.birthdate);
       }
       else this.newCofrade.birthdate = null;
       if(this.newCofrade?.number?.length === 0 || this.newCofrade?.number === null) this.newCofrade.number = this.numToBeAssigned;

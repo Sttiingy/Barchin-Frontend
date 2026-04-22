@@ -111,6 +111,16 @@ export class FirebaseService {
       return null;
     }
   }
+
+  async getAdminById(id: string) {
+    const docRef = doc(this.firestore, 'users', id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      return null;
+    }
+  }
   
   async updateCofradeById(id: any, cofrade: any) {
     console.log("@ACTUALIZANDO COFRADE", id, cofrade);

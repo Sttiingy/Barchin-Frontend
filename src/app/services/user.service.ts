@@ -55,4 +55,12 @@ export class UserService {
         return this.userBehaviour$.getValue();
     }
 
+    public async changePassword(newPassword: string) {
+        try {
+            await this.firebaseService.auth.currentUser.updatePassword(newPassword);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
 }

@@ -1,0 +1,196 @@
+<app-header [title]="'DETALLE DEL USUARIO'"></app-header>
+<ion-content>
+    <div class="content-wrapper">
+      <ion-button shape="round" class="backButton" size="small" (click)="navBack()" *ngIf="!loading">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        ATRÁS
+      </ion-button>
+      <div class="card-container" *ngIf="!loading">
+        <ion-row class="nonDisplayPhone">
+          <ion-col>
+            <!-- <p class="badge active">En activo</p>
+            <p class="badge unactive">Baja</p>
+            <p class="badge exitus">Difunto</p> -->
+            <ion-row style="gap: 1rem;">
+              <p>NOMBRE :</p>
+              <p class="normal-p">{{admin?.name}} {{admin?.surname}}</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+              <p>NÚMERO DE admin :</p>
+              <p class="normal-p">{{admin?.number}}</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+              <p>SEXO :</p>
+              <p *ngIf="admin.sex === 'M'" class="normal-p">Hombre</p>
+              <p *ngIf="admin.sex === 'W'" class="normal-p">Mujer</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;" *ngIf="admin.sex === 'W'">
+              <p>DAMA EN :</p>
+              <ion-row *ngIf="admin.damaYear != null || admin?.damaYear?.length > 0">
+                <ng-container *ngFor="let year of admin.damaYear; let i = index">
+                  <p *ngIf="admin.damaYear != null && i === 0" class="normal-p" style="padding-left: 0;">{{year}}</p>
+                  <p *ngIf="admin.damaYear != null && i != 0" class="normal-p" style="padding-left: 0;">, {{year}}</p>
+                </ng-container>
+              </ion-row>
+              <p *ngIf="admin.damaYear === null || admin?.damaYear?.length === 0" class="normal-p">No ha sido dama</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;" *ngIf="admin?.birthdate != null">
+              <p>FECHA DE NACIMIENTO :</p>
+              <p class="normal-p">{{admin?.birthdate | date:'dd/MM/yyyy'}}</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;" *ngIf="admin?.birthdate === null">
+              <p>FECHA DE NACIMIENTO :</p>
+              <p class="normal-p">s/d</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+              <p>TELÉFONO :</p>
+              <p *ngIf="admin.phoneNumber != null" class="normal-p">{{admin?.phoneNumber}}</p>
+              <p *ngIf="admin.phoneNumber === null" class="normal-p">s/d</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+              <p>CUMPLIÓ COMO :</p>
+              <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'CAP'" class="normal-p">Capitán</p>
+              <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'ALF'" class="normal-p">Alférez</p>
+              <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'SAR'" class="normal-p">Sargento</p>
+              <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'AYU'" class="normal-p">Ayudante</p>
+              <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'BAN'" class="normal-p">Abanderado</p>
+              <p *ngIf="admin.cumpRole === null || admin?.cumpRole?.length === 0" class="normal-p">No ha cumplido</p>
+            </ion-row>
+            <ion-row *ngIf="admin.cumpYear != null" style="gap: 1rem;">
+              <p>CUMPLIÓ EN :</p>
+              <p class="normal-p">{{admin.cumpYear}}</p>
+            </ion-row>
+          </ion-col>
+          <ion-col>
+            <ion-row style="gap: 1rem;">
+              <p>ALTA EN :</p>
+              <p class="normal-p">{{admin?.altaYear}}</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+              <p>FAROL EN :</p>
+              <p *ngIf="admin.farolYear != null" class="normal-p">{{admin.farolYear}}</p>
+              <p *ngIf="admin.farolYear === null" class="normal-p">No ha sido farol</p>
+            </ion-row> 
+            <ion-row style="gap: 1rem;">
+              <p>MAYORDOMO EN :</p>
+              <p *ngIf="admin.mayorYear != null" class="normal-p">{{admin.mayorYear}}</p>
+              <p *ngIf="admin.mayorYear === null" class="normal-p">No ha sido mayordomo</p>
+            </ion-row>
+            <ion-row *ngIf="admin.bajaYear != null" style="gap: 1rem;">
+              <p>BAJA EN:</p>
+              <p class="normal-p">{{admin.bajaYear}}</p>
+            </ion-row>
+            <ion-row *ngIf="admin.bajaReason && admin.bajaReason?.length > 0" style="gap: 1rem;">
+              <p>MOTIVO DE LA BAJA :</p>
+              <p *ngIf="admin.bajaReason === 'VOL'" class="normal-p">Baja voluntaria</p>
+              <p *ngIf="admin.bajaReason === 'IMP'" class="normal-p">Impago</p>
+              <p *ngIf="admin.bajaReason === 'EXI'" class="normal-p">Defunción</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+              <p>REFERENCIA FAMILIAR :</p>
+              <p *ngIf="admin?.info != null && admin?.info?.length > 0" class="normal-p">{{admin.info}}</p>
+              <p *ngIf="admin?.info === null || admin?.info?.length === 0" class="normal-p">s/d</p>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+                <p>INFORMACIÓN ADICIONAL :</p>
+                <p *ngIf="admin?.addInfo != null && admin?.addInfo?.length > 0" class="normal-p">{{admin.addInfo}}</p>
+                <p *ngIf="admin?.addInfo === null || admin?.addInfo?.length === 0" class="normal-p">s/d</p>
+              </ion-row>
+          </ion-col>
+        </ion-row>
+        <div class="displayOnlyPhone" >
+          <ion-col style="flex-direction: column; display: flex;">
+            <ion-row style="justify-content: space-between;">
+              <ion-button style="min-width: 2.6rem;" color="primary" shape="round" (click)="editAdmin()">
+                <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+              </ion-button>
+            </ion-row>
+            <ion-row style="gap: 1rem;">
+                <p>NOMBRE :</p>
+                <p class="normal-p">{{admin?.name}} {{admin?.surname}}</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>NÚMERO DE admin :</p>
+                <p class="normal-p">{{admin?.number}}</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>SEXO :</p>
+                <p *ngIf="admin.sex === 'M'" class="normal-p">Hombre</p>
+                <p *ngIf="admin.sex === 'W'" class="normal-p">Mujer</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;" *ngIf="admin.sex === 'W'">
+                <p>DAMA EN :</p>
+                <ion-row *ngIf="admin.damaYear != null || admin?.damaYear?.length > 0">
+                  <ng-container *ngFor="let year of admin.damaYear; let i = index">
+                    <p *ngIf="admin.damaYear != null && i === 0" class="normal-p" style="padding-left: 0;">{{year}}</p>
+                    <p *ngIf="admin.damaYear != null && i != 0" class="normal-p" style="padding-left: 0;">, {{year}}</p>
+                  </ng-container>
+                </ion-row>
+                <p *ngIf="admin.damaYear === null || admin?.damaYear?.length === 0" class="normal-p">No ha sido dama</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;" *ngIf="admin?.birthdate != null">
+                <p>FECHA DE NACIMIENTO :</p>
+                <p class="normal-p">{{admin?.birthdate | date:'dd/MM/yyyy'}}</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;" *ngIf="admin?.birthdate === null">
+                <p>FECHA DE NACIMIENTO :</p>
+                <p class="normal-p">s/d</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>TELÉFONO :</p>
+                <p *ngIf="admin.phoneNumber != null" class="normal-p">{{admin?.phoneNumber}}</p>
+                <p *ngIf="admin.phoneNumber === null" class="normal-p">s/d</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>CUMPLIÓ COMO :</p>
+                <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'CAP'" class="normal-p">Capitán</p>
+                <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'ALF'" class="normal-p">Alférez</p>
+                <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'SAR'" class="normal-p">Sargento</p>
+                <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'AYU'" class="normal-p">Ayudante</p>
+                <p *ngIf="admin.cumpRole != null && admin?.cumpRole?.length > 0 && admin?.cumpRole === 'BAN'" class="normal-p">Abanderado</p>
+                <p *ngIf="admin.cumpRole === null || admin?.cumpRole?.length === 0" class="normal-p">No ha cumplido</p>
+              </ion-row>
+              <ion-row *ngIf="admin.cumpYear != null" style="gap: 1rem;">
+                <p>CUMPLIÓ EN :</p>
+                <p class="normal-p">{{admin.cumpYear}}</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>FAROL EN :</p>
+                <p *ngIf="admin.farolYear != null" class="normal-p">{{admin.farolYear}}</p>
+                <p *ngIf="admin.farolYear === null" class="normal-p">No ha sido farol</p>
+              </ion-row> 
+              <ion-row style="gap: 1rem;">
+                <p>MAYORDOMO EN :</p>
+                <p *ngIf="admin.mayorYear != null" class="normal-p">{{admin.mayorYear}}</p>
+                <p *ngIf="admin.mayorYear === null" class="normal-p">No ha sido mayordomo</p>
+              </ion-row>
+              <ion-row *ngIf="admin.bajaYear != null" style="gap: 1rem;">
+                <p>BAJA EN:</p>
+                <p class="normal-p">{{admin.bajaYear}}</p>
+              </ion-row>
+              <ion-row *ngIf="admin.bajaReason && admin.bajaReason?.length > 0" style="gap: 1rem;">
+                <p>MOTIVO DE LA BAJA :</p>
+                <p *ngIf="admin.bajaReason === 'VOL'" class="normal-p">Baja voluntaria</p>
+                <p *ngIf="admin.bajaReason === 'IMP'" class="normal-p">Impago</p>
+                <p *ngIf="admin.bajaReason === 'EXI'" class="normal-p">Defunción</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>REFERENCIA FAMILIAR :</p>
+                <p *ngIf="admin?.info != null && admin?.info?.length > 0" class="normal-p">{{admin.info}}</p>
+                <p *ngIf="admin?.info === null || admin?.info?.length === 0" class="normal-p">s/d</p>
+              </ion-row>
+              <ion-row style="gap: 1rem;">
+                <p>INFORMACIÓN ADICIONAL :</p>
+                <p *ngIf="admin?.addInfo != null && admin?.addInfo?.length > 0" class="normal-p">{{admin.addInfo}}</p>
+                <p *ngIf="admin?.addInfo === null || admin?.addInfo?.length === 0" class="normal-p">s/d</p>
+              </ion-row>
+          </ion-col>
+        </div>
+<!--         <ion-row style="justify-content: center;">
+          <ion-button color="primary" shape="round" (click)="createadmin()" [disabled]="buttonIsDisabled()">
+            DAR DE ALTA
+          </ion-button>
+        </ion-row> -->
+      </div>
+    </div>
+</ion-content>

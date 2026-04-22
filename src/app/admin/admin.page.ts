@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin',
@@ -8,11 +9,12 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class AdminPage implements OnInit {
 
-  allUsers;
+  allUsers: any;
   loading: boolean = false;
 
   constructor(
-    public firebase: FirebaseService
+    public firebase: FirebaseService,
+      public navCtrl: NavController
   ) { }
 
  async ngOnInit() {
@@ -31,6 +33,17 @@ export class AdminPage implements OnInit {
     } catch(e) {
       console.error(e);
       this.loading = false;
+    }
+  }
+
+  async navToAdminDetail(id: any) {
+    try {
+      this.loading = true;
+      this.navCtrl.navigateRoot('admin-detail/' + id);
+      this.loading = false;
+    } catch (e) {
+      this.loading = false;
+      console.error(e);
     }
   }
 

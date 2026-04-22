@@ -28,6 +28,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'admin-detail/:id',
+    loadChildren: () => import('./admin-detail/admin-detail.module').then( m => m.AdminDetailPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'new-cofrade',
     loadChildren: () => import('./new-cofrade/new-cofrade.module').then( m => m.NewCofradePageModule),
     canActivate: [AuthGuard]
@@ -45,6 +50,10 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'admin-detail',
+    loadChildren: () => import('./admin-detail/admin-detail.module').then( m => m.AdminDetailPageModule)
   },
 ];
 

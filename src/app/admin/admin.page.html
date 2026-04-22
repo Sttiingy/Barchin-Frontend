@@ -10,7 +10,7 @@
                 <th scope="col">PUESTO</th>
             </tr>
             <ng-container *ngFor="let user of allUsers; let i = index">
-                <tr class="not-header" [class.row-background]="i % 2 === 0">
+                <tr class="not-header clickable" [class.row-background]="i % 2 === 0" (click)="navToAdminDetail(user?.id)">
                     <td>{{user?.displayName}}</td>
                     <td>{{user?.email}}</td>
                     <td>{{user?.role}}</td>
