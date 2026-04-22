@@ -54,6 +54,7 @@ export class AdminDetailPage implements OnInit {
   async presentActionsPopover(e: Event) {
     const popover = await this.popoverController.create({
       component: ActionsPopoverComponent,
+      mode: 'md',
       event: e,
     });
 

@@ -18,7 +18,7 @@ export class ActionsPopoverComponent  implements OnInit {
     await this.popoverController.dismiss({
       field: field
     });
-    console.log("EDIT ADMIN");
+    console.log("EDIT ADMIN", field);
   }
 
 }
