@@ -42,7 +42,10 @@ export class CofradeDetailPage implements OnInit {
       console.log(this.cofrade);
       if(!this.cofradeIsDead() && this.cofrade?.birthdate != null) {
         this.cofrade.birthdate = new Date(this.cofrade.birthdate.seconds * 1000);
-      this.age = this.calculateAge(this.cofrade.birthdate);
+        this.age = this.calculateAge(this.cofrade.birthdate);
+      }
+      if(this.cofrade?.birthdate != null) {
+        this.cofrade.birthdate = new Date(this.cofrade.birthdate.seconds * 1000);
       }
       console.log("@DETAIL " + this.id);
       this.loading = false;
