@@ -11,11 +11,10 @@ import { distinctUntilChanged, Subject, takeUntil, tap } from 'rxjs';
 })
 export class LoginPage implements OnInit {
 
-  public username: string = null;
-  public password: string = null;
+  public username: any = null;
+  public password: any = null;
   public loading: boolean = false;
   public credentialsError: boolean = false;
-  public onDestroy$: Subject<void> = new Subject();
 
   constructor(
     public firebaseService: FirebaseService,
@@ -31,17 +30,14 @@ export class LoginPage implements OnInit {
       this.loading = true;
       this.username = this.username.trim();
       this.password = this.password.trim();
-      await this.authService.login(this.username, this.password);
-      this.authService.getAuthenticationState().pipe(
-        takeUntil(this.onDestroy$)
-      ).subscribe((isAuth: boolean) => {
-        if(isAuth) {
-          this.username = null;
-          this.password = null;
-          this.navCtrl.navigateRoot('home');
-        }
-      });
-    } catch (e) {
+      let userId = await this.authService.login(this.username, this.password);
+      if(this.authService.getAuthenticationState()) {
+        this.username = null;
+        this.password = null;
+        this.navCtrl.navigateRoot('home');
+      }
+      console.log("@LOGIN PAGE - LOGIN SUCCESS", userId);
+    } catch (e: any) {
       console.error(e?.message);
       if(e?.message?.includes('auth/invalid')) {
         this.credentialsError = true;
@@ -53,10 +49,6 @@ export class LoginPage implements OnInit {
 
   resetAuthError() {
     this.credentialsError = false;
-  } 
-
-  ngOnDestroy(): void {
-    this.onDestroy$.next();
   }
 
 }

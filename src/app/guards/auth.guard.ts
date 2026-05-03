@@ -16,7 +16,7 @@ export class AuthGuard  {
     public navCtrl: NavController
 ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | any {
         return this.authService.isAuthenticated$.pipe(
             filter(val => val !== null), // Filter out initial Behaviour subject value
             take(1), // Otherwise the Observable doesn't complete!

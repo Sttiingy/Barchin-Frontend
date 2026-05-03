@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Auth, getAuth, indexedDBLocalPersistence, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import { getAuth, indexedDBLocalPersistence, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Capacitor } from '@capacitor/core';
-import { addDoc, collection, doc, Firestore, getDoc, getDocs, getFirestore, query, setDoc, orderBy, limit, startAt } from 'firebase/firestore';
-import { FirebaseStorage, getStorage } from 'firebase/storage';
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, orderBy, limit, startAt, writeBatch } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -53,12 +53,12 @@ export class FirebaseService {
     if(filter === "NOMBRE") {
       let allCofrades:any = await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
       console.log("@BUSCANDO POR NOMBRE", allCofrades);
-      allCofrades = allCofrades.docs.map((doc) => {
+      allCofrades = allCofrades.docs.map((doc: any) => {
         let cofrade: any = { id: doc.id, ...doc.data() };
         return cofrade;
       });
 
-      const resultados = allCofrades.filter(c => 
+      const resultados = allCofrades.filter((c: any) => 
         c.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       console.log("@RESULTADOS", resultados);
@@ -66,12 +66,12 @@ export class FirebaseService {
     }
     else if(filter === "APELLIDO") {
       let allCofrades:any = await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
-      allCofrades = allCofrades.docs.map((doc) => {
+      allCofrades = allCofrades.docs.map((doc: any) => {
         let cofrade: any = { id: doc.id, ...doc.data() };
         return cofrade;
       });
 
-      const resultados = allCofrades.filter(c => 
+      const resultados = allCofrades.filter((c: any) => 
         c.surname.toLowerCase().includes(searchTerm.toLowerCase())
       );
       console.log("@RESULTADOS", resultados);
@@ -80,12 +80,12 @@ export class FirebaseService {
     }
     else if(filter === "NUM") {
       let allCofrades:any = await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
-      allCofrades = allCofrades.docs.map((doc) => {
+      allCofrades = allCofrades.docs.map((doc: any) => {
         let cofrade: any = { id: doc.id, ...doc.data() };
         return cofrade;
       });
 
-      const resultados = allCofrades.filter(c => 
+      const resultados = allCofrades.filter((c: any) => 
         c.number.toString() === searchTerm.toString()
       );
       console.log("@RESULTADOS", resultados);
@@ -125,5 +125,26 @@ export class FirebaseService {
   async updateCofradeById(id: any, cofrade: any) {
     console.log("@ACTUALIZANDO COFRADE", id, cofrade);
     return await setDoc(doc(this.firestore, 'cofrades', id), cofrade);
+  }
+  async duplicateCollection(source: any, target: any) {
+    const sourceRef = collection(this.firestore, source);
+    const snapshot = await getDocs(sourceRef);
+
+    const batch = writeBatch(this.firestore);
+
+    snapshot.forEach((document) => {
+      const targetDocRef = doc(
+        this.firestore,
+        `${target}/${document.id}`
+      );
+
+      batch.set(targetDocRef, document.data());
+    });
+
+    await batch.commit();
+
+    console.log(
+      `Copied ${snapshot.size} docs from ${source} to ${target}`
+    );
   }
 }

@@ -12,10 +12,10 @@ import { AlertController, NavController } from "@ionic/angular";
 })
 
 export class AuthService {
-
+    public firebaseAccessToken: any = null;
+    public isAuthenticated: boolean = false;
     public isAuthenticated$: ReplaySubject<boolean> = new ReplaySubject(1);
-    public onSignOut$: Subject<any> = new Subject();
-    public firebaseAccessToken: string = null;
+    public currentUser: any = null;
 
     constructor(
         public firebaseService: FirebaseService,
@@ -28,26 +28,31 @@ export class AuthService {
     init() {
         user(this.firebaseService.auth).subscribe((user) => {
             if (user) {
+              this.isAuthenticated = true;
               this.isAuthenticated$.next(true);
             } else {
-              this.isAuthenticated$.next(false);
+            this.isAuthenticated = false;
+                this.isAuthenticated$.next(false);
             }
         });
     }
 
     async login(email: string, password: string) {
         await this.firebaseService.loginWithFirebase(email, password);
+        this.isAuthenticated = true;
         this.isAuthenticated$.next(true);
         this.firebaseAccessToken = await (await this.firebaseService.auth.currentUser).getIdToken();
-        console.log(this.firebaseAccessToken);
+        this.currentUser = await this.firebaseService.getAdminById(this.firebaseService.auth.currentUser.uid);
+        console.log("@AUTH SERVICE - LOGIN SUCCESS", this.currentUser);
+        return this.firebaseService.auth.currentUser.uid;
     }
 
     getAuthenticationState() {
-        return this.isAuthenticated$;
+        return this.isAuthenticated;
     }
 
     getUser() {
-        return user(this.firebaseService.auth);
+        return this.currentUser;
     }
 
     public async logout() {
@@ -66,12 +71,12 @@ export class AuthService {
                 cssClass: 'confirm-alert-button',
                 handler: async () => {
                     await this.firebaseService.auth.signOut();
+                    this.isAuthenticated = false;
                     this.isAuthenticated$.next(false);
-                    this.onSignOut$.next(true);
-                    this.getAuthenticationState().pipe(
-                    ).subscribe((isAuth: boolean) => {
-                        if(!isAuth) this.navCtrl.navigateRoot('login');
-                    });
+                    let isAuth = this.getAuthenticationState();
+                    if (!isAuth) {
+                        this.navCtrl.navigateRoot('login');
+                    }
                 }
               }
             ],
