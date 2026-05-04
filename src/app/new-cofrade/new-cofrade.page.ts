@@ -14,7 +14,7 @@ export class NewCofradePage implements OnInit {
     public navCtrl: NavController
   ) { }
   
-  public newCofrade = {
+  public newCofrade: any = {
     customId: null,
     name: null,
     surname: null,
@@ -41,12 +41,7 @@ export class NewCofradePage implements OnInit {
   async ngOnInit() {
     try {
       this.loading = true;
-      let res = await this.firebaseService.getAllCofrades();
-      let allCofrades = res.docs.map((doc) => {
-        let cofrade: any = { id: doc.id, ...doc.data() };
-        return cofrade;
-      });
-      this.numToBeAssigned = allCofrades?.length + 1;
+      this.numToBeAssigned = await this.firebaseService.getCofradesLength() + 1;
       this.loading = false;
     } catch(e) {
       console.error(e);
@@ -69,7 +64,7 @@ export class NewCofradePage implements OnInit {
       else {
         this.newCofrade.damaYear = this.newCofrade?.damaYear?.trim();
         this.newCofrade?.damaYear?.replace(" ", "");
-        this.newCofrade.damaYear = this.newCofrade.damaYear?.split(",").map(num => Number(num));
+        this.newCofrade.damaYear = this.newCofrade.damaYear?.split(",").map((num: any) => Number(num));
       }
       console.log(this.newCofrade.birthdate);
       if((this.newCofrade.birthdate?.length >= 10) && this.newCofrade.birthdate != null) {

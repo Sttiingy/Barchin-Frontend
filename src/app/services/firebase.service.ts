@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getAuth, indexedDBLocalPersistence, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Capacitor } from '@capacitor/core';
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, orderBy, limit, startAt, writeBatch } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, orderBy, limit, startAt, writeBatch, getCountFromServer } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { environment } from 'src/environments/environment';
 
@@ -46,6 +46,11 @@ export class FirebaseService {
   }
   async getAllCofrades() {
     return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
+  }
+
+  async getCofradesLength() {
+    const snapshot = await getCountFromServer(collection(this.firestore, 'cofrades'));
+    return snapshot.data().count;
   }
 
   async getCofradesByFilter(filter: any, searchTerm: any,) {

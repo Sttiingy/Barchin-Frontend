@@ -45,14 +45,9 @@ export class CofradesPage implements OnInit {
       this.filter = "NOMBRE";
       this.searchTerm = null;
       this.searchDone = false;
-      let res = await this.firebase.getAllCofrades();
-      this.totalCofrades = res.docs.map((doc) => {
-        let cofrade: any = { id: doc.id, ...doc.data() };
-        return cofrade;
-      });
-      this.totalCofrades = this.totalCofrades.length;
+      this.totalCofrades = await this.firebase.getCofradesLength();
       this.totalPages = Math.ceil(this.totalCofrades / 20);
-      res = await this.firebase.getCofradesByPage(this.page);
+      let res = await this.firebase.getCofradesByPage(this.page);
       this.allCofrades = res.docs.map((doc) => {
         let cofrade: any = { id: doc.id, ...doc.data() };
         return cofrade;
