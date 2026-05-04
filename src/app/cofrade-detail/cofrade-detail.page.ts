@@ -40,12 +40,9 @@ export class CofradeDetailPage implements OnInit {
       this.id = await this.route.snapshot.paramMap.get('id')!;
       this.cofrade = await this.firebase.getCofradeById(this.id);
       console.log(this.cofrade);
-      if(!this.cofradeIsDead() && this.cofrade?.birthdate != null) {
-        this.cofrade.birthdate = new Date(this.cofrade.birthdate.seconds * 1000);
-        this.age = this.calculateAge(this.cofrade.birthdate);
-      }
       if(this.cofrade?.birthdate != null) {
         this.cofrade.birthdate = new Date(this.cofrade.birthdate.seconds * 1000);
+        this.age = this.calculateAge(this.cofrade.birthdate);
       }
       console.log("@DETAIL " + this.id);
       this.loading = false;
