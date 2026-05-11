@@ -17,6 +17,7 @@ export class CofradesPage implements OnInit {
   totalPages: any;
   page: number = 0;
   canGoForward: boolean = true;
+  canGoMuchForward: boolean = true;
   filter:any = "NOMBRE";
   searchTerm: any = null;
 
@@ -57,6 +58,11 @@ export class CofradesPage implements OnInit {
       } else {
         this.canGoForward = true;
       }
+      if(this.page + 5 >= this.totalPages) {
+        this.canGoMuchForward = false;
+      } else {
+        this.canGoMuchForward = true;
+      }
       console.log(new Date(this.allCofrades[0]?.fechaIni?.seconds * 1000));
       console.log("@COFRADES", this.allCofrades);
       this.loading = false;
@@ -95,6 +101,20 @@ export class CofradesPage implements OnInit {
   incrementPage() {
     if(this.canGoForward) {
       this.page++;
+      this.init();
+    }
+  }
+
+  incrementPageBy5() {
+    if(this.canGoMuchForward) {
+      this.page += 5;
+      this.init();
+    }
+  }
+
+  decrementPageBy5() {
+    if(this.page - 5 >= 0) {
+      this.page -= 5;
       this.init();
     }
   }

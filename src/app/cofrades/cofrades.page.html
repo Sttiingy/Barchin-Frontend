@@ -22,12 +22,18 @@
                 </ion-button>
             </ion-col>
             <ion-col style="justify-content: end; display: flex; max-width: fit-content;" *ngIf="!searchDone">
+                <ion-button shape="round" size="small" (click)="decrementPageBy5()" [disabled]="page < 5">
+                    <ion-icon slot="icon-only" name="play-back-outline"></ion-icon>
+                </ion-button>
                 <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
                     <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
                 </ion-button>
                     <span style="margin-top: .5rem; color: var(--ion-color-primary); font-weight: bold; margin-right: .3rem; margin-left: .3rem;">{{page + 1}} / {{totalPages}}</span>
                 <ion-button shape="round" size="small" (click)="incrementPage()" [disabled]="!canGoForward">
                     <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+                </ion-button>
+                <ion-button shape="round" size="small" (click)="incrementPageBy5()" [disabled]="!canGoMuchForward">
+                    <ion-icon slot="icon-only" name="play-forward-outline"></ion-icon>
                 </ion-button>
             </ion-col>
             <ion-col style="justify-content: end; display: flex; max-width: fit-content;" *ngIf="searchDone">
@@ -59,12 +65,18 @@
     <div class="global-wrap displayOnlyPhone" *ngIf="!loading">
         <ion-row style="justify-content: end; margin-bottom: .5rem; margin-top: .5rem;" *ngIf="!searchDone">
             <ion-icon name="search-outline" (click)="openSearchModal()" style="color: var(--ion-color-primary); width: 30px; height: 30px; margin: auto auto auto 0;"></ion-icon>
+            <ion-button shape="round" size="small" (click)="decrementPageBy5()" [disabled]="page < 5">
+                <ion-icon slot="icon-only" name="play-back-outline"></ion-icon>
+            </ion-button>
             <ion-button shape="round" size="small" (click)="decrementPage()" [disabled]="page <= 0">
                 <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
             </ion-button>
                 <span style="margin-top: .5rem; color: var(--ion-color-primary); font-weight: bold; margin-right: .3rem; margin-left: .3rem;">{{page + 1}} / {{totalPages}}</span>
             <ion-button shape="round" size="small" (click)="incrementPage()" [disabled]="!canGoForward">
                 <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+            </ion-button>
+            <ion-button shape="round" size="small" (click)="incrementPageBy5()" [disabled]="!canGoMuchForward">
+                <ion-icon slot="icon-only" name="play-forward-outline"></ion-icon>
             </ion-button>
         </ion-row>
         <ion-row style="justify-content: end; margin-bottom: .5rem;" *ngIf="searchDone">
