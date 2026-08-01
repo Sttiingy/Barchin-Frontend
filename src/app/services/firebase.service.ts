@@ -48,6 +48,18 @@ export class FirebaseService {
     return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('customId', 'asc')));
   }
 
+  async getActiveCofradesManSurname() {
+    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('surname', 'asc')));
+  }
+
+  async getActiveCofradesWomanSurname() {
+    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('surname', 'asc')));
+  }
+
+  async getAllActiveCofradesSurname() {
+    return await getDocs(query(collection(this.firestore, 'cofrades'), orderBy('surname', 'asc')));
+  }
+
   async getCofradesLength() {
     const snapshot = await getCountFromServer(collection(this.firestore, 'cofrades'));
     return snapshot.data().count;

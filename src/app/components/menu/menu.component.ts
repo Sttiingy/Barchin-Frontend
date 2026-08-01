@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { PdfService } from 'src/app/services/pdf.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +16,8 @@ export class MenuComponent  implements OnInit {
     public menuService: MenuService,
     public navCtrl: NavController,
     public router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    public pdfService: PdfService
   ) { }
 
   ngOnInit() {}
@@ -27,5 +29,13 @@ export class MenuComponent  implements OnInit {
 
   showHomeElement() {
     return !this.router.url.includes('home');
+  }
+
+  async testPdf() {
+    try {
+      await this.pdfService.generateAllCofradesPdf();
+    } catch (error) {
+      console.error("Error updating cofrades: ", error);
+    }
   }
 }
