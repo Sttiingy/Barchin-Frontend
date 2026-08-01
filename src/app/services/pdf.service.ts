@@ -19,7 +19,7 @@ export class PdfService {
     ) {
     }
 
-    async generateAllCofradesPdf() {
+    async generateCofradesPdf(gender: string) {
         let res = await this.firebase.getActiveCofradesManSurname();
         const allCofrades = res.docs.map((doc: any) => {
             let cofrade: any = { id: doc.id, ...doc.data() };
@@ -87,8 +87,12 @@ export class PdfService {
                 }
             }
         };
-        pdfMake.createPdf(manDocDefinition).download("cofrades_hombres.pdf");
-        pdfMake.createPdf(womanDocDefinition).download("cofrades_mujeres.pdf");
-        pdfMake.createPdf(allDocDefinition).download("cofrades.pdf");
+        if (gender === 'hombres') {
+            pdfMake.createPdf(manDocDefinition).download("cofrades_hombres.pdf");
+        } else if (gender === 'mujeres') {
+            pdfMake.createPdf(womanDocDefinition).download("cofrades_mujeres.pdf");
+        } else {
+            pdfMake.createPdf(allDocDefinition).download("cofrades.pdf");
+        }
     }
 }

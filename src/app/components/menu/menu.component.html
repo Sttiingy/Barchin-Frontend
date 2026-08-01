@@ -32,10 +32,25 @@
       <p class="item-text">JUNTA</p>
     </ion-row>
 
+    <!-- COMPONENTE JUNTA -->
     <div class="item-separator"></div>
-    <ion-row class="menu-item" (click)="testPdf()">
+    <ion-row class="menu-item" (click)="testPdf('hombres')">
       <ion-icon class="item-icon" name="cloud-download-outline"></ion-icon>
-      <p class="item-text">DESCARGAR LISTADOS</p>
+      <p class="item-text">LISTADO HOMBRES</p>
+    </ion-row>
+
+    <!-- COMPONENTE JUNTA -->
+    <div class="item-separator"></div>
+    <ion-row class="menu-item" (click)="testPdf('mujeres')">
+      <ion-icon class="item-icon" name="cloud-download-outline"></ion-icon>
+      <p class="item-text">LISTADO MUJERES</p>
+    </ion-row>
+
+    <!-- COMPONENTE JUNTA -->
+    <div class="item-separator"></div>
+    <ion-row class="menu-item" (click)="testPdf('todos')">
+      <ion-icon class="item-icon" name="cloud-download-outline"></ion-icon>
+      <p class="item-text">LISTADO TODOS</p>
     </ion-row>
 
   </ion-content>
