@@ -30,12 +30,4 @@ export class MenuComponent  implements OnInit {
   showHomeElement() {
     return !this.router.url.includes('home');
   }
-
-  async testPdf(gender: string) {
-    try {
-      await this.pdfService.generateCofradesPdf(gender);
-    } catch (error) {
-      console.error("Error updating cofrades: ", error);
-    }
-  }
 }

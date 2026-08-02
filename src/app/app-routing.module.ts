@@ -47,13 +47,17 @@ const routes: Routes = [
     loadChildren: () => import('./edit-cofrade/edit-cofrade.module').then( m => m.EditCofradePageModule)
   },
   {
+    path: 'admin-detail',
+    loadChildren: () => import('./admin-detail/admin-detail.module').then( m => m.AdminDetailPageModule)
+  },
+  {
+    path: 'download-lists',
+    loadChildren: () => import('./download-lists/download-lists.module').then( m => m.DownloadListsPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: 'admin-detail',
-    loadChildren: () => import('./admin-detail/admin-detail.module').then( m => m.AdminDetailPageModule)
   },
 ];
 

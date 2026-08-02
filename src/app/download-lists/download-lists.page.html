@@ -1,0 +1,26 @@
+<app-header [title]="'DESCARGA DE LISTADOS'"></app-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
+    <div class="content-wrapper" *ngIf="!loading">
+      <ion-col style="flex-direction: column; display: flex; justify-content: center; gap: 1rem;" class="responsive-separation">
+        <ion-button shape="round" class="backButton" size="small" (click)="testPdf('hombres')" *ngIf="!loading">
+          <ion-icon slot="start" name="man-outline"></ion-icon>
+          DESCAREGAR LISTADO HOMBRES
+        </ion-button>
+        <ion-button shape="round" class="backButton" size="small" (click)="testPdf('mujeres')" *ngIf="!loading">
+          <ion-icon slot="start" name="woman-outline"></ion-icon>
+          DESCAREGAR LISTADO MUJERES
+        </ion-button>
+        <ion-button shape="round" class="backButton" size="small" (click)="testPdf('todos')" *ngIf="!loading">
+          <ion-icon slot="start" name="people-circle-outline"></ion-icon>
+          DESCAREGAR LISTADO COMPLETO
+        </ion-button>
+      </ion-col>
+    </div>
+    <div class="content-wrapper" *ngIf="loading">
+      <ion-col style="color: var(--ion-color-primary); font-weight: bold; display: flex; justify-content: center; gap: 1rem; margin-top: 5rem;" class="responsive-separation">
+        PREPARANDO DESCARGA...
+      </ion-col>
+    </div>
+</ion-content>
